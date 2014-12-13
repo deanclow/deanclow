@@ -14,6 +14,19 @@ use Zend\Mvc\MvcEvent;
 
 class Module
 {
+    public function getServiceConfig()
+    {    
+         return array(
+            'factories' => array(
+                'Application\Service\BlogComment' => function ($sm) {
+                    $service = new \Application\Service\BlogComment($sm);
+                    $service->setDb($sm->get('Zend\Db\Adapter\Adapter'));
+                    return $service;
+                },
+            )
+        );   
+    }
+    
     public function onBootstrap(MvcEvent $e)
     {
         $eventManager        = $e->getApplication()->getEventManager();

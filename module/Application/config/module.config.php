@@ -20,12 +20,42 @@ return array(
                     ),
                 ),
             ),
-            'blog' => array(
+            'blog-post' => array(
                 'type' => 'literal',
                 'options' => array(
-                    'route' => '/blog',
+                    'route' => '/blog-post',
                     'defaults' => array(
-                        'controller' => 'Application\Controller\Blog',
+                        'controller' => 'Application\Controller\BlogPost',
+                        'action' => 'index'
+                    )
+                )
+            ),
+            'blog-comment' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route' => '/blog-comment',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\BlogComment',
+                        'action' => 'index'
+                    )
+                )
+            ),
+            'chess' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route' => '/chess',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\ChessComment',
+                        'action' => 'index'
+                    )
+                )
+            ),
+            'resume' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route' => '/resume',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Resume',
                         'action' => 'index'
                     )
                 )
@@ -83,8 +113,12 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController',
-            'Application\Controller\Blog'  => 'Application\Controller\BlogController'
+            'Application\Controller\Index'          => 'Application\Controller\IndexController',
+            'Application\Controller\BlogComment'    => 'Application\Controller\BlogCommentController',
+            'Application\Controller\BlogPost'       => 'Application\Controller\BlogPostController',
+            'Application\Controller\Chess'          => 'Application\Controller\ChessController',
+            'Application\Controller\Resume'         => 'Application\Controller\ResumeController',
+            'Application\Controller\About'          => 'Application\Controller\AboutController'
         ),
     ),
     'view_manager' => array(
