@@ -45,7 +45,7 @@ return array(
                 'options' => array(
                     'route' => '/chess',
                     'defaults' => array(
-                        'controller' => 'Application\Controller\ChessComment',
+                        'controller' => 'Application\Controller\Chess',
                         'action' => 'index'
                     )
                 )
@@ -135,6 +135,9 @@ return array(
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
+        ),
+        'strategies' => array(
+            'ViewJsonStrategy',
         ),
     ),
     // Placeholder for console routes

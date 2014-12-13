@@ -18,6 +18,13 @@ class ChessController extends CommonController
      */
     public function indexAction()
     {
-        return $this->acceptableViewModelSelector($this->acceptCriteria);
+        print 'hi';
+        exit;
+        
+        $service = $this->getServiceLocator()->get("Application\Service\Chess");
+        $games   = $service->fetchAll();
+        $view = $this->acceptableViewModelSelector($this->acceptCriteria);
+        $view->setVariables(array('games' => $games));
+        return $view;
     }
 }

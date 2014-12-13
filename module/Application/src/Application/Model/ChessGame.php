@@ -7,7 +7,7 @@
  * @copyright 2014 Dean Clow
  */
 
-namespace Application\ChessGame;
+namespace Application\Model;
 use \Application\Model\CommonModel;
 
 class ChessGame extends CommonModel
@@ -98,6 +98,44 @@ class ChessGame extends CommonModel
     public function getWhitePlayer()
     {
         return $this->whitePlayer;
+    }
+    
+    /**
+     * Set whites ELO rating
+     * @param int $rating
+     */
+    public function setWhiteRating($rating)
+    {
+        $this->whiteRating = $rating;
+        return $this;
+    }
+    
+    /**
+     * Get the white ELO rating
+     * @return int
+     */
+    public function getWhiteRating()
+    {
+        return $this->whiteRating;
+    }
+    
+    /**
+     * Set black's ELO rating
+     * @param int $rating
+     */
+    public function setBlackRating($rating)
+    {
+        $this->blackRating = $rating;
+        return $this;
+    }
+    
+    /**
+     * Get the black rating
+     * @return int
+     */
+    public function getBlackRating()
+    {
+        return $this->blackRating;
     }
     
     /**

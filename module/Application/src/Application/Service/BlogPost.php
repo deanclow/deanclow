@@ -10,7 +10,7 @@
 namespace Application\Service;
 use \Application\Service\CommonService;
 
-class BlogComment extends CommonService
+class BlogPost extends CommonService
 {
     /**
      * Constructor
@@ -18,6 +18,6 @@ class BlogComment extends CommonService
      */
     public function __construct()
     {
-        $this->table = 'blog_comment';
+        $this->table = 'blog_post';
     }
 }

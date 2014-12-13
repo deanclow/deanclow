@@ -23,8 +23,8 @@ abstract class CommonController extends AbstractActionController
       'Zend\View\Model\JsonModel' => array(
          'application/json',
       ),
-      'Zend\View\Model\FeedModel' => array(
-         'application/rss+xml',
+      'Zend\View\Model\ViewModel' => array(
+         'text/html',
       ),
    );
     

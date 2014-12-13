@@ -1,7 +1,7 @@
 <?php
 
 /* 
- * The blog comment encoder
+ * The blog post encoder
  * @author    Dean Clow
  * @email     <dclow@blackjackfarm.com>
  * @copyright 2014 Dean Clow
@@ -10,7 +10,7 @@
 namespace Application\Service\Encoder;
 use \Application\Service\Encoder\CommonEncoder;
 
-class BlogCommentEncoder extends CommonEncoder
+class BlogPost extends CommonEncoder
 {
     /**
      * Holds the db fields and their mapping
@@ -26,7 +26,7 @@ class BlogCommentEncoder extends CommonEncoder
      */
     public function __construct()
     {
-        parent::__constructor();
-        $this->table = 'blog_comment';
+        parent::__construct();
+        $this->table = 'blog_post';
     }
 }

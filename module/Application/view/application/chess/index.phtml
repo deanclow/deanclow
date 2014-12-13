@@ -1,0 +1,30 @@
+<script type="text/javascript" src="http://chesstempo.com/js/pgnyui.js"></script>
+<script type="text/javascript" src="http://chesstempo.com/js/pgnviewer.js"></script>  
+<link type="text/css" rel="stylesheet" href="http://chesstempo.com/css/board-min.css"></link> 
+
+<table width="100%">
+    <tr><th>White</th><th>Black</th><th>Date</th><th>Site</th>
+    <?php
+    foreach($this->games as $model){
+        print '<tr>';
+        print '<td>'.$model->getWhitePlayer().' ('.$model->getWhiteRating().')</td>';
+        print '<td>'.$model->getBlackPlayer().' ('.$model->getBlackRating().')</td>';
+        print '<td>'.$model->getDate().'</td>';
+        print '<td>'.$model->getSite().'</td>';
+        print '</tr>';
+    }
+    ?>
+</table>
+
+<script>  
+new PgnViewer(  
+  { boardName: "demo",  
+    pgnFile: '/chess/Barley 10-5-14.pgn',  
+    pieceSet: 'leipzig',   
+    pieceSize: 46  
+  }  
+);  
+</script>
+
+<div id="demo-container"></div>  
+<div id="demo-moves"></div> 

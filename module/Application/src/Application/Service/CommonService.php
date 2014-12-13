@@ -10,6 +10,10 @@
 namespace Application\Service;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\Db\Sql\Sql;
+use Zend\Db\Adapter\Adapter;
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Db\Sql\Select;
 
 abstract class CommonService implements ServiceLocatorAwareInterface
 {
@@ -26,17 +30,35 @@ abstract class CommonService implements ServiceLocatorAwareInterface
     protected $db;
     
     /**
+     * Holds the db table
+     * @var string
+     */
+    protected $table;
+    
+    /**
+     * Holds the primary key
+     * @var string
+     */
+    protected $primaryKey = "id";
+    
+    /**
+     * Holds the encoder
+     * @var obj
+     */
+    protected $encoder;
+    
+    /**
      * Constructor
      */
     public function __construct(){}
     
     /**
      * Set the db adapter
-     * @param \Zend\Db\Adapter $db
+     * @param \Zend\Db\Adapter $dbAdapter
      */
-    public function setDb($db)
+    public function setDb($dbAdapter)
     {
-        $this->db = $db;
+        $this->db = new Sql($dbAdapter);
     }
     
     /**
@@ -68,16 +90,74 @@ abstract class CommonService implements ServiceLocatorAwareInterface
     }
 
     /**
+     * Set the model (used in the encoder later)
+     * @param object $model
+     */
+    public function setModel($model)
+    {
+        $this->model = $model;
+    }
+    
+    /**
+     * Get the model
+     * @return object
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+    
+    /**
+     * Set the primary key
+     * @param string $key
+     * @return void
+     */
+    public function setPrimaryKey($key="id")
+    {
+        $this->primaryKey = $key;
+    }
+    
+    /**
+     * Get the primary key
+     * @return string
+     */
+    public function getPrimaryKey()
+    {
+        return $this->primaryKey;
+    }
+    
+    /**
      * Fetch all results
      * @return array
      */
     public function fetchAll()
+    {  
+        $select = $this->getDb()->select($this->table);
+        $select->order($this->getPrimaryKey());
+        $statement = $this->getDb()->prepareStatementForSqlObject($select);
+        $results = $statement->execute();
+        if(is_object($this->getEncoder())){
+            return $this->getEncoder()->encode($results, 
+                                               $this->model);
+        }
+        return $results;
+    }
+    
+    /**
+     * Set the encoder
+     * @param object $encoder
+     */
+    public function setEncoder($encoder)
     {
-        /*$sql = 'UPDATE ' . $qi('artist')
-            . ' SET ' . $qi('name') . ' = ' . $fp('name')
-            . ' WHERE ' . $qi('id') . ' = ' . $fp('id');
-        $statement = $adapter->query($sql);*/
-        $resultset = $this->db->select($this->table);
-        return $resultset->toArray();
+        $this->encoder = $encoder;
+    }
+    
+    /**
+     * Get the encoder
+     * @return object
+     */
+    public function getEncoder()
+    {
+        return $this->encoder;
     }
 }

@@ -21,6 +21,22 @@ class Module
                 'Application\Service\BlogComment' => function ($sm) {
                     $service = new \Application\Service\BlogComment($sm);
                     $service->setDb($sm->get('Zend\Db\Adapter\Adapter'));
+                    $service->setEncoder(new \Application\Service\Encoder\BlogComment());
+                    $service->setModel(new \Application\Model\BlogComment());
+                    return $service;
+                },
+                'Application\Service\BlogPost' => function ($sm) {
+                    $service = new \Application\Service\BlogPost($sm);
+                    $service->setDb($sm->get('Zend\Db\Adapter\Adapter'));
+                    $service->setEncoder(new \Application\Service\Encoder\BlogPost());
+                    $service->setModel(new \Application\Model\BlogPost());
+                    return $service;
+                },
+                'Application\Service\Chess' => function ($sm) {
+                    $service = new \Application\Service\Chess($sm);
+                    $service->setDb($sm->get('Zend\Db\Adapter\Adapter'));
+                    $service->setEncoder(new \Application\Service\Encoder\Chess());
+                    $service->setModel(new \Application\Model\ChessGame());
                     return $service;
                 },
             )
@@ -29,7 +45,18 @@ class Module
     
     public function onBootstrap(MvcEvent $e)
     {
-        $eventManager        = $e->getApplication()->getEventManager();
+        $eventManager = $e->getApplication()->getEventManager();
+        $sharedEvents = $eventManager->getSharedManager();
+        //when we start to add other modules, we can add the different layouts below
+        $sharedEvents->attach(__NAMESPACE__, 'dispatch', function($e) {
+            /* @var $e \Zend\Mvc\MvcEvent */
+            // fired when an ActionController under the namespace is dispatched.
+            $controller = $e->getTarget();
+            $routeMatch = $e->getRouteMatch();
+            /* @var $routeMatch \Zend\Mvc\Router\RouteMatch */
+            $routeName = $routeMatch->getMatchedRouteName();
+            $controller->layout('layout/layout');
+        }, 100);
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
     }

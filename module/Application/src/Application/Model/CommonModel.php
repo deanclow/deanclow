@@ -28,12 +28,13 @@ class CommonModel
      * @param type $obj
      * @return void
      */
-    private function hydrate($obj)
+    public function hydrate($obj)
     {
         foreach($obj as $key=>$value){
             if(property_exists($this, $key)){
                 $this->$key = $value;
             }
         }
+        return $this;
     }
 }

@@ -32,5 +32,31 @@ abstract class CommonEncoder
     /**
      * The constructor
      */
-    public function __construct();
+    public function __construct()
+    {
+    }
+    
+    /**
+     * Encode the result set into a collection of models
+     * @param  object   $resultSet         The result set to hydrate with
+     * @param  object   $modelToHydrate    The model to hydrate
+     * @return boolean|\Application\Model\BlogPost
+     */
+    public function encode($resultSet,
+                           $modelToHydrate)
+    {
+        $collection = array();
+        if($resultSet->count()==0)
+            return false;
+        foreach($resultSet as $row){
+            foreach($this->fields as $key=>$value){
+                if(isset($row[$value])){
+                    $row[$key] = $row[$value];
+                }
+            }
+            array_push($collection,
+                       new $modelToHydrate($row));
+        }
+        return $collection;
+    }
 }
