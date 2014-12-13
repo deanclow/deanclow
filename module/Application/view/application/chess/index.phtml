@@ -5,6 +5,7 @@
 <table width="100%">
     <tr><th>White</th><th>Black</th><th>Date</th><th>Site</th>
     <?php
+    $count = 1;
     foreach($this->games as $model){
         print '<tr>';
         print '<td>'.$model->getWhitePlayer().' ('.$model->getWhiteRating().')</td>';
@@ -12,19 +13,21 @@
         print '<td>'.$model->getDate().'</td>';
         print '<td>'.$model->getSite().'</td>';
         print '</tr>';
+        print '<tr>';
+        print '<td colspan="3"><div id="chessgame_'.$count.'-container"></div></td>';
+        print '<td><div id="chessgame_'.$count.'-moves"></div> </td>';
+        print '</tr>';
+        
+        print '<script>  
+                new PgnViewer(  
+                  { boardName: "chessgame_'.$count.'",  
+                    pgnFile: \''.$model->getPgnString().'\',  
+                    pieceSet: \'leipzig\',   
+                    pieceSize: 46  
+                  }  
+                );  
+                </script>';
+        $count++;
     }
     ?>
 </table>
-
-<script>  
-new PgnViewer(  
-  { boardName: "demo",  
-    pgnFile: '/chess/Barley 10-5-14.pgn',  
-    pieceSet: 'leipzig',   
-    pieceSize: 46  
-  }  
-);  
-</script>
-
-<div id="demo-container"></div>  
-<div id="demo-moves"></div> 

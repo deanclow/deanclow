@@ -43,7 +43,7 @@ return array(
             'chess' => array(
                 'type' => 'literal',
                 'options' => array(
-                    'route' => '/chess',
+                    'route' => '/chessgames',
                     'defaults' => array(
                         'controller' => 'Application\Controller\Chess',
                         'action' => 'index'
