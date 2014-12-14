@@ -19,9 +19,23 @@ class ChessController extends CommonController
     public function indexAction()
     {
         $service = $this->getServiceLocator()->get("Application\Service\Chess");
-        $games   = $service->fetchAll();
-        $view = $this->acceptableViewModelSelector($this->acceptCriteria);
+        $games   = $service->fetchAll(null, "date DESC");
+        $view    = $this->acceptableViewModelSelector($this->acceptCriteria);
         $view->setVariables(array('games' => $games));
+        return $view;
+    }
+    
+    /**
+     * The show action
+     * @return \Zend\View\Model\ViewModel
+     */
+    public function showAction()
+    {
+        $service = $this->getServiceLocator()->get("Application\Service\Chess");
+        $id      = $this->params()->fromRoute("id", null);
+        $game    = $service->fetchById($id);
+        $view = new \Zend\View\Model\ViewModel();
+        $view->setVariables(array('game' => $game));
         return $view;
     }
 }

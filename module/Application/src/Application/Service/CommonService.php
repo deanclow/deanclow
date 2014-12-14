@@ -128,12 +128,22 @@ abstract class CommonService implements ServiceLocatorAwareInterface
     
     /**
      * Fetch all results
+     * @param  array    $where  The where parameters
+     * @param  string   $order  The ordering for the statement
      * @return array
      */
-    public function fetchAll()
+    public function fetchAll($where=array(),
+                             $order=null)
     {  
         $select = $this->getDb()->select($this->table);
-        $select->order($this->getPrimaryKey());
+        if(!is_null($where) && !empty($where)){
+            $select->where($where);
+        }
+        if(!is_null($order)){
+            $select->order($order);
+        }else{
+            $select->order($this->getPrimaryKey());
+        }
         $statement = $this->getDb()->prepareStatementForSqlObject($select);
         $results = $statement->execute();
         if(is_object($this->getEncoder())){
@@ -141,6 +151,17 @@ abstract class CommonService implements ServiceLocatorAwareInterface
                                                $this->model);
         }
         return $results;
+    }
+    
+    /**
+     * Fetch by id
+     * @param  int $id
+     * @return object
+     */
+    public function fetchById($id)
+    {
+        $result = $this->fetchAll(array($this->primaryKey => $id));
+        return $result[0];
     }
     
     /**

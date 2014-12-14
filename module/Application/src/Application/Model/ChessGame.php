@@ -16,13 +16,13 @@ class ChessGame extends CommonModel
      * Holds white's player name
      * @var string
      */
-    protected $whitePlayer = "";
+    protected $whitePlayer = "Unknown";
     
     /**
      * Holds black's player name
      * @var string
      */
-    protected $blackPlayer = "";
+    protected $blackPlayer = "Unknown";
     
     /**
      * Holds black's ELO rating
@@ -61,6 +61,12 @@ class ChessGame extends CommonModel
     protected $pgnString   = "";
     
     /**
+     * The result of the game
+     * @var string
+     */
+    protected $result = "Unknown";
+    
+    /**
      * Set the pgn string
      * @param  string $pgnString
      * @return \Application\ChessGame\ChessGame
@@ -78,6 +84,26 @@ class ChessGame extends CommonModel
     public function getPgnString()
     {
         return $this->pgnString;
+    }
+    
+    /**
+     * Set the result
+     * @param string $result    The result of the game
+     * @return \Application\Model\ChessGame
+     */
+    public function setResult($result)
+    {
+        $this->result = $result;
+        return $this;
+    }
+    
+    /**
+     * Get the result
+     * @return string
+     */
+    public function getResult()
+    {
+        return $this->result;
     }
     
     /**

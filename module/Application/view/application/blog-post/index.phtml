@@ -1,4 +1,14 @@
 <?php
 
-print_r($this->posts);
-exit;
+foreach($this->posts as $post){
+    print '<p>'.$post->getTitle().'</p>';
+    print '<p>'.$post->getBody().'</p>';
+    if(!empty($post->comments)){
+        foreach($post->comments as $comment){
+            print '<div class="comments" style="width:100%;border:1px solid #000; padding:10px;">';
+            print '<p>'.$comment->getBody().'</p>';
+            print '</div>';
+        }
+    }
+    print '<p style="margin-bottom:30px;">&nbsp;</p>';
+}

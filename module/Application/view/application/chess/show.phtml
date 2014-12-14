@@ -1,0 +1,30 @@
+<script type="text/javascript" src="http://chesstempo.com/js/pgnyui.js"></script>
+<script type="text/javascript" src="http://chesstempo.com/js/pgnviewer.js"></script>  
+<link type="text/css" rel="stylesheet" href="http://chesstempo.com/css/board-min.css"></link> 
+<p><a class="back" href="/chessgames/index">Back</a></p>
+<table width="100%">
+    <tr><th>White</th><th>Black</th><th>Date</th><th>Site</th><th>Result</th>
+    <?php
+    $model = $this->game;
+    print '<tr>';
+    print '<td>'.$model->getWhitePlayer().' ('.$model->getWhiteRating().')</td>';
+    print '<td>'.$model->getBlackPlayer().' ('.$model->getBlackRating().')</td>';
+    print '<td>'.$model->getDate().'</td>';
+    print '<td>'.$model->getSite().'</td>';
+    print '<td>'.$model->getResult().'</td>';
+    print '</tr>';
+    print '<tr>';
+    print '<td colspan="4"><div style="width:400px;margin-left:auto;margin-right:auto;" id="chessgame_1-container"></div><div id="chessgame_1-moves"></div></td>';
+    print '</tr>';
+
+    print '<script>  
+            new PgnViewer(  
+              { boardName: "chessgame_1",  
+                pgnFile: \''.$model->getPgnString().'\',  
+                pieceSet: \'leipzig\',   
+                pieceSize: 46  
+              }  
+            );  
+            </script>';
+    ?>
+</table>

@@ -20,4 +20,19 @@ class BlogComment extends CommonService
     {
         $this->table = 'blog_comment';
     }
+    
+    /**
+     * Attach the comments to a blog post
+     * @param  array $rs
+     * @return array
+     */
+    public function attachComments($rs)
+    {
+        $datasource = array();
+        foreach($rs as $postModel){
+            $postModel->comments = $this->fetchAll(array('blog_post_id' => $postModel->getId()));
+            $datasource[] = $postModel;
+        }
+        return $datasource;
+    }
 }

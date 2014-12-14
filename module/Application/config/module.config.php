@@ -28,6 +28,21 @@ return array(
                         'controller' => 'Application\Controller\BlogPost',
                         'action' => 'index'
                     )
+                ),
+                'child_routes' => array(
+                    'index' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/index',
+                            'defaults' => array(
+                                'action' => 'index',
+                            ),
+                            'constraints' => array(
+                                'id' => '[0-9]*'
+                            ),
+                        ),
+                        'may_terminate' => true
+                    ),
                 )
             ),
             'blog-comment' => array(
@@ -48,6 +63,34 @@ return array(
                         'controller' => 'Application\Controller\Chess',
                         'action' => 'index'
                     )
+                ),
+                'child_routes' => array(
+                    'show' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/show[/:id]',
+                            'defaults' => array(
+                                'action' => 'show',
+                            ),
+                            'constraints' => array(
+                                'id' => '[0-9]*'
+                            ),
+                        ),
+                        'may_terminate' => true
+                    ),
+                    'index' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/index',
+                            'defaults' => array(
+                                'action' => 'index',
+                            ),
+                            'constraints' => array(
+                                'id' => '[0-9]*'
+                            ),
+                        ),
+                        'may_terminate' => true
+                    ),
                 )
             ),
             'resume' => array(

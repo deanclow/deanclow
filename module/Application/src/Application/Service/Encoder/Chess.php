@@ -23,7 +23,8 @@ class Chess extends CommonEncoder
                            'roundNumber'    => 'round_number',
                            'date'           => 'date',
                            'site'           => 'site',
-                           'pgnString'      => 'pgn_string');
+                           'pgnString'      => 'pgn_string',
+                           'result'         => 'result');
  
     /**
      * Constructor

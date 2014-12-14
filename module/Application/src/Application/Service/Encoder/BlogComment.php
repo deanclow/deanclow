@@ -20,7 +20,8 @@ class BlogComment extends CommonEncoder
                            'createdBy'  => 'created_by',
                            'body'       => 'body',
                            'upVotes'    => 'up_votes',
-                           'downVotes'  => 'down_votes');
+                           'downVotes'  => 'down_votes',
+                           'blogPostId' => 'blog_post_id');
 
     /**
      * Constructor

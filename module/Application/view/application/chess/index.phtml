@@ -3,7 +3,7 @@
 <link type="text/css" rel="stylesheet" href="http://chesstempo.com/css/board-min.css"></link> 
 
 <table width="100%">
-    <tr><th>White</th><th>Black</th><th>Date</th><th>Site</th>
+    <tr><th>White</th><th>Black</th><th>Date</th><th>Site</th><th>Result</th><th>Edit</th><th>Play</th>
     <?php
     $count = 1;
     foreach($this->games as $model){
@@ -12,22 +12,10 @@
         print '<td>'.$model->getBlackPlayer().' ('.$model->getBlackRating().')</td>';
         print '<td>'.$model->getDate().'</td>';
         print '<td>'.$model->getSite().'</td>';
+        print '<td>'.$model->getResult().'</td>';
+        print '<td><a href="/chessgames/edit/'.$model->getId().'">Edit</a></td>';
+        print '<td><a href="/chessgames/show/'.$model->getId().'">Play</a></td>';
         print '</tr>';
-        print '<tr>';
-        print '<td colspan="3"><div id="chessgame_'.$count.'-container"></div></td>';
-        print '<td><div id="chessgame_'.$count.'-moves"></div> </td>';
-        print '</tr>';
-        
-        print '<script>  
-                new PgnViewer(  
-                  { boardName: "chessgame_'.$count.'",  
-                    pgnFile: \''.$model->getPgnString().'\',  
-                    pieceSet: \'leipzig\',   
-                    pieceSize: 46  
-                  }  
-                );  
-                </script>';
-        $count++;
     }
     ?>
 </table>

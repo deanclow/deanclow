@@ -12,6 +12,12 @@ namespace Application\Model;
 class CommonModel
 {
     /**
+     * Holds the uid
+     * @var int
+     */
+    protected $id = 0;
+    
+    /**
      * The base constructor
      * Optionally, hydrates if possible
      * @param string/array $obj     Contains the info to hydrate the model
@@ -31,10 +37,30 @@ class CommonModel
     public function hydrate($obj)
     {
         foreach($obj as $key=>$value){
-            if(property_exists($this, $key)){
+            if(property_exists($this, $key) && !empty($value)){
                 $this->$key = $value;
             }
         }
         return $this;
+    }
+    
+    /**
+     * Set the uid
+     * @param  int $id
+     * @return \Application\Model\CommonModel
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+    
+    /**
+     * Get the uid
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

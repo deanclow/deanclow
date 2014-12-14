@@ -20,6 +20,7 @@ class BlogPostController extends CommonController
     {
         $service = $this->getServiceLocator()->get("Application\Service\BlogPost");
         $results = $service->fetchAll();
+        $results = $this->getServiceLocator()->get("Application\Service\BlogComment")->attachComments($results);
         $view = $this->acceptableViewModelSelector($this->acceptCriteria);
         $view->setVariables(array(
             'posts' => $results
