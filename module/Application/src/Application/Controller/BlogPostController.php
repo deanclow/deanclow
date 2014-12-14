@@ -19,7 +19,7 @@ class BlogPostController extends CommonController
     public function indexAction()
     {
         $service = $this->getServiceLocator()->get("Application\Service\BlogPost");
-        $results = $service->fetchAll();
+        $results = $service->fetchAll(null, 'date DESC');
         $results = $this->getServiceLocator()->get("Application\Service\BlogComment")->attachComments($results);
         $view = $this->acceptableViewModelSelector($this->acceptCriteria);
         $view->setVariables(array(

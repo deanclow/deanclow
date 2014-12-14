@@ -1,14 +1,47 @@
-<?php
-
-foreach($this->posts as $post){
-    print '<p>'.$post->getTitle().'</p>';
-    print '<p>'.$post->getBody().'</p>';
-    if(!empty($post->comments)){
-        foreach($post->comments as $comment){
-            print '<div class="comments" style="width:100%;border:1px solid #000; padding:10px;">';
-            print '<p>'.$comment->getBody().'</p>';
-            print '</div>';
+<div class="blog_box">
+    <?php
+    
+    $count = 1;
+    foreach($this->posts as $post){
+        print  '<div class="col-sm-5 col-md-6 blog_post">
+                    <ul class="list-inline">
+                        <li class="col-md-4">
+                            <a href="#">
+                                <img class="img-responsive" src="/template/images/blog-image-1.jpg" alt="gallery 1" />
+                            </a>
+                        </li>
+                        <li  class="col-md-8">
+                            <div class="pull-left">
+                                <span class="blog_header">'.$post->getTitle().'</span><br/>
+                                <span>
+                                    <img style="width:12px;height:12px;" src="/img/thumbs_up.ico" /> '.$post->getUpVotes().'
+                                    &nbsp;&nbsp;<img style="width:12px;height:12px;" src="/img/thumbs_down.ico" /> '.$post->getDownVotes().'
+                                </span>
+                            </div>
+                            <div class="pull-right">
+                                <a class="btn btn-orange" href="#" role="button">'.$post->getDate().'</a>
+                            </div>
+                            <div class="clearfix"> </div>
+                            <p class="blog_text">
+                                '.$post->getBriefBody().'...
+                            </p>
+                        </li>
+                    </ul>
+                </div> <!-- /.blog_post 1 -->';
+        if($count%2==0){
+            print '<div class="templatemo_clear"></div>';
         }
+        $count++;
     }
-    print '<p style="margin-bottom:30px;">&nbsp;</p>';
-}
+            
+    ?>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    setTimeout(function(){
+       $(".nav li").attr("class", "");  
+       $("#blogNav").attr("class", "active"); 
+    }, 0);
+});
+</script>

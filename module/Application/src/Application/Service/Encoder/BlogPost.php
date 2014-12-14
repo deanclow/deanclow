@@ -18,7 +18,11 @@ class BlogPost extends CommonEncoder
      */
     public $fields = array('title'      => 'title',
                            'createdBy'  => 'created_by',
-                           'body'       => 'body');
+                           'body'       => 'body',
+                           'date'       => 'date',
+                           'briefBody'  => 'brief_body',
+                           'upVotes'    => 'up_votes',
+                           'downVotes'  => 'down_votes');
  
     /**
      * Constructor

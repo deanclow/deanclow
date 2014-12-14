@@ -12,42 +12,10 @@ namespace Application\Model;
 class BlogComment extends \Application\Model\BlogPost
 {
     /**
-     * Up votes count
-     * @var int
-     */
-    protected $upVotes   = 0;
-    
-    /**
-     * Down votes count
-     * @var int
-     */
-    protected $downVotes = 0;
-    
-    /**
      * Holds the blog post id
      * @var int
      */
     protected $blogPostId = 0;
-    
-    /**
-     * Set the up votes count
-     * @param  int $voteCount
-     * @return \Application\Model\BlogComment
-     */
-    public function setUpVotes($voteCount)
-    {
-        $this->upVotes = $voteCount;
-        return $this;
-    }
-    
-    /**
-     * Get the up votes
-     * @return int
-     */
-    public function getUpVotes()
-    {
-        return (int)$this->upVotes;
-    }
     
     /**
      * Set the blog post id
@@ -67,25 +35,5 @@ class BlogComment extends \Application\Model\BlogPost
     public function getBlogPostId()
     {
         return $this->blogPostId;
-    }
-    
-    /**
-     * Set the down votes count
-     * @param  int $voteCount
-     * @return \Application\Model\BlogComment
-     */
-    public function setDownVotes($voteCount)
-    {
-        $this->downVotes = $voteCount;
-        return $this;
-    }
-    
-    /**
-     * Get the down votes count
-     * @return int
-     */
-    public function getDownVotes()
-    {
-        return (int)$this->downVotes;
     }
 }
