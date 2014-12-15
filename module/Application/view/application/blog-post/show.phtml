@@ -1,0 +1,44 @@
+<a href="/blog-post/index">Back</a>
+<div class="blog_box">
+    <?php
+    $count = 1;
+    print  '<div class="col-sm-5 col-md-12 blog_post">
+                <ul class="list-inline">
+                    <li class="col-md-2">
+                        <a href="#">
+                            <img class="img-responsive" src="'.$this->post->getTitleImage().'" alt="gallery 1" />
+                        </a>
+                    </li>
+                    <li  class="col-md-10">
+                        <div class="pull-left">
+                            <span class="blog_header">'.$this->post->getTitle().'</span><br/>
+                            <span>
+                                <img style="width:12px;height:12px;" src="/img/thumbs_up.ico" /> '.$this->post->getUpVotes().'
+                                &nbsp;&nbsp;<img style="width:12px;height:12px;" src="/img/thumbs_down.ico" /> '.$this->post->getDownVotes().'
+                            </span>
+                        </div>
+                        <div class="pull-right">
+                            <a class="btn btn-orange" href="/blog-post/show/'.$this->post->getId().'" role="button">'.$this->post->getDate().'</a>
+                        </div>
+                        <div class="clearfix"> </div>
+                        <p class="blog_text">
+                            '.$this->post->getBody().'
+                        </p>
+                    </li>
+                </ul>
+            </div> <!-- /.blog_post 1 -->';
+    if($count%2==0){
+        print '<div class="templatemo_clear"></div>';
+    }
+    $count++;        
+    ?>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    setTimeout(function(){
+       $(".nav li").attr("class", "");  
+       $("#blogNav").attr("class", "active"); 
+    }, 0);
+});
+</script>

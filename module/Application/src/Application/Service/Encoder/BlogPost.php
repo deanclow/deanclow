@@ -16,13 +16,15 @@ class BlogPost extends CommonEncoder
      * Holds the db fields and their mapping
      * @var string
      */
-    public $fields = array('title'      => 'title',
+    public $fields = array('id'         => 'id',
+                           'title'      => 'title',
                            'createdBy'  => 'created_by',
                            'body'       => 'body',
                            'date'       => 'date',
                            'briefBody'  => 'brief_body',
                            'upVotes'    => 'up_votes',
-                           'downVotes'  => 'down_votes');
+                           'downVotes'  => 'down_votes',
+                           'titleImage' => 'title_image');
  
     /**
      * Constructor

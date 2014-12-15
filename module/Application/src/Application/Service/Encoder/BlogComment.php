@@ -16,7 +16,8 @@ class BlogComment extends CommonEncoder
      * Holds the db fields and their mapping
      * @var string
      */
-    public $fields = array('title'      => 'title',
+    public $fields = array('id'         => 'id',
+                           'title'      => 'title',
                            'createdBy'  => 'created_by',
                            'body'       => 'body',
                            'upVotes'    => 'up_votes',

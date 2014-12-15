@@ -1,0 +1,20 @@
+<form method="post" enctype="multipart/form-data">
+    <fieldset>
+        <input type="hidden" name="submitted" value="1" />
+        <div class="row">
+            <label for="title">Title</label> <input type="text" name="title" id="title" value="<?php print $this->model->getTitle(); ?>" />
+        </div>
+        <div class="row">
+            <label for="body">Body</label> <input type="text" name="body" id="body" value="<?php print $this->model->getBody(); ?>" />
+        </div>
+        <div class="row">
+            <label for="shortbody">Short Body</label> <input type="text" name="shortbody" id="shortbody" value="<?php print $this->model->getBriefBody(); ?>" />
+        </div>
+        <div class="row">
+            <label for="titleimage">Title Image</label> <input type="text" name="titleimage" id="titleimage" value="<?php print $this->model->getTitleImage(); ?>" />
+        </div>
+        <div class="row">
+            <input type="submit" value="Submit" />
+        </div>
+    </fieldset>
+</form>

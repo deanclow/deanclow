@@ -127,6 +127,41 @@ abstract class CommonService implements ServiceLocatorAwareInterface
     }
     
     /**
+     * Insert a new record
+     * @param  object $params
+     * @return object
+     */
+    public function insert($obj)
+    {
+        $insert = $this->getDb()->insert($this->table);
+        $values = $obj->toArray($results);
+        $values = $this->getEncoder()->map($values);
+        unset($values[$this->primaryKey]);
+        $insert->values($values);
+        $statement = $this->getDb()->prepareStatementForSqlObject($insert);
+        $results = $statement->execute();
+        return $obj;
+    }
+    
+    /**
+     * Update a record
+     * @param  object $params
+     * @return object
+     */
+    public function update($obj)
+    {
+        $insert = $this->getDb()->update($this->table);
+        $values = $obj->toArray($results);
+        $values = $this->getEncoder()->map($values);
+        $insert->where(array($this->primaryKey => $values[$this->primaryKey]));
+        unset($values[$this->primaryKey]);
+        $insert->set($values);
+        $statement = $this->getDb()->prepareStatementForSqlObject($insert);
+        $results = $statement->execute();
+        return $obj;
+    }
+    
+    /**
      * Fetch all results
      * @param  array    $where  The where parameters
      * @param  string   $order  The ordering for the statement
@@ -162,6 +197,20 @@ abstract class CommonService implements ServiceLocatorAwareInterface
     {
         $result = $this->fetchAll(array($this->primaryKey => $id));
         return $result[0];
+    }
+    
+    /**
+     * Delete a record
+     * @param  int $id
+     * @return int
+     */
+    public function delete($id)
+    {
+        $obj = $this->getDb()->delete($this->table);
+        $obj->where(array($this->primaryKey => $id));
+        $statement = $this->getDb()->prepareStatementForSqlObject($obj);
+        $results = $statement->execute();
+        return $results;
     }
     
     /**

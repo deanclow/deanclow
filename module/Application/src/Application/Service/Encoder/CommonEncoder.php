@@ -59,4 +59,20 @@ abstract class CommonEncoder
         }
         return $collection;
     }
+    
+    /**
+     * Map an array so it matches the db input fields
+     * @param  array $params
+     * @return array
+     */
+    public function map($params)
+    {
+        $newParams = array();
+        foreach($params as $key=>$value){
+            if(isset($this->fields[$key])){
+                $newParams[$this->fields[$key]] = $value;
+            }
+        }
+        return $newParams;
+    }
 }

@@ -25,6 +25,12 @@ class BlogPost extends CommonModel
     protected $downVotes = 0;
     
     /**
+     * Holds the url to the title image
+     * @var string
+     */
+    protected $titleImage = "/template/images/blog-image-1.jpg";
+    
+    /**
      * Holds the title of the blog post
      * @var string 
      */
@@ -193,5 +199,25 @@ class BlogPost extends CommonModel
     public function getDownVotes()
     {
         return (int)$this->downVotes;
+    }
+    
+    /**
+     * Set the title image url
+     * @param  string $url
+     * @return \Application\Model\BlogPost
+     */
+    public function setTitleImage($url)
+    {
+        $this->titleImage = $url;
+        return $this;
+    }
+    
+    /**
+     * Get the title image url
+     * @return string
+     */
+    public function getTitleImage()
+    {
+        return $this->titleImage;
     }
 }
