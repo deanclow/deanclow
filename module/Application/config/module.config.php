@@ -95,6 +95,19 @@ return array(
                         ),
                         'may_terminate' => true
                     ),
+                    'parse-legacy-data' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/parse-legacy-data',
+                            'defaults' => array(
+                                'action' => 'parse-legacy-data',
+                            ),
+                            'constraints' => array(
+                                'id' => '[0-9]*'
+                            ),
+                        ),
+                        'may_terminate' => true
+                    ),
                 )
             ),
             'blog-comment' => array(

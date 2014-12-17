@@ -5,26 +5,27 @@
     foreach($this->posts as $post){
         print  '<div class="col-sm-5 col-md-6 blog_post">
                     <ul class="list-inline">
-                        <li class="col-md-4">
-                            <a href="#">
-                                <img class="img-responsive" src="'.$post->getTitleImage().'" alt="gallery 1" />
-                            </a>
-                        </li>
-                        <li  class="col-md-8">
-                            <div class="pull-left">
-                                <span class="blog_header">'.$post->getTitle().'</span><br/>
-                                <span>
-                                    <img style="width:12px;height:12px;" src="/img/thumbs_up.ico" /> '.$post->getUpVotes().'
-                                    &nbsp;&nbsp;<img style="width:12px;height:12px;" src="/img/thumbs_down.ico" /> '.$post->getDownVotes().'
-                                </span>
-                            </div>
-                            <div class="pull-right">
-                                <a class="btn btn-orange" href="/blog-post/show/'.$post->getId().'" role="button">'.$post->getDate().'</a>
-                            </div>
-                            <div class="clearfix"> </div>
-                            <p class="blog_text">
-                                '.$post->getBriefBody().'...
-                            </p>
+                        <li class="col-md-12">
+                            <div class="row">';
+        
+        $nextColumnSize = 9;
+        if(!empty($post->getTitleImage()) && $post->getTitleImage()!='No image'){
+            $nextColumnSize = 6;
+            print ' <div class="col-xs-3"><span class="blog_header"><img src="'.$post->getTitleImage().'" style="height:100px;width:100px;" alt="" title="" /></span><br/></div>';
+        }
+                      print '<div class="col-xs-'.$nextColumnSize.'">
+                                <span class="blog_header">'.$post->getTitle().'</span></div>
+                                <div class="col-xs-3 pull-left"><a class="btn btn-orange" href="/blog-post/show/'.$post->getId().'" role="button">'.$post->getDate().'</a></div>
+                                <div>    
+                                    <div class="pull-left col-xs-9">
+                                        <img style="width:12px;height:12px;" src="/img/thumbs_up.ico" /> '.$post->getUpVotes().'
+                                        &nbsp;&nbsp;<img style="width:12px;height:12px;" src="/img/thumbs_down.ico" /> '.$post->getDownVotes().'
+                                    </div>
+                                    <div class="pull-left col-xs-9">
+                                        '.strip_tags($post->getBriefBody()).'...
+                                    </div>
+                                </div>
+                             </div>
                         </li>
                     </ul>
                 </div> <!-- /.blog_post 1 -->';

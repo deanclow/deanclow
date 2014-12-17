@@ -144,6 +144,21 @@ abstract class CommonService implements ServiceLocatorAwareInterface
     }
     
     /**
+     * Insert a record not using an object
+     * @param  array $values
+     * @return int
+     */
+    public function insertNoObject($values)
+    {
+        $insert = $this->getDb()->insert($this->table);
+        unset($values[$this->primaryKey]);
+        $insert->values($values);
+        $statement = $this->getDb()->prepareStatementForSqlObject($insert);
+        $result = $statement->execute();
+        return $result->getGeneratedValue();
+    }
+    
+    /**
      * Update a record
      * @param  object $params
      * @return object
@@ -163,12 +178,14 @@ abstract class CommonService implements ServiceLocatorAwareInterface
     
     /**
      * Fetch all results
-     * @param  array    $where  The where parameters
-     * @param  string   $order  The ordering for the statement
+     * @param  array    $where          The where parameters
+     * @param  string   $order          The ordering for the statement
+     * @param  bool     $ignoreEncode   Ignore the model encoding
      * @return array
      */
     public function fetchAll($where=array(),
-                             $order=null)
+                             $order=null,
+                             $ignoreEncode=false)
     {  
         $select = $this->getDb()->select($this->table);
         if(!is_null($where) && !empty($where)){
@@ -181,7 +198,7 @@ abstract class CommonService implements ServiceLocatorAwareInterface
         }
         $statement = $this->getDb()->prepareStatementForSqlObject($select);
         $results = $statement->execute();
-        if(is_object($this->getEncoder())){
+        if(is_object($this->getEncoder()) && !$ignoreEncode){
             return $this->getEncoder()->encode($results, 
                                                $this->model);
         }
@@ -207,7 +224,9 @@ abstract class CommonService implements ServiceLocatorAwareInterface
     public function delete($id)
     {
         $obj = $this->getDb()->delete($this->table);
-        $obj->where(array($this->primaryKey => $id));
+        if($id){
+            $obj->where(array($this->primaryKey => $id));
+        }
         $statement = $this->getDb()->prepareStatementForSqlObject($obj);
         $results = $statement->execute();
         return $results;

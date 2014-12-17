@@ -72,6 +72,10 @@ class BlogPostController extends CommonController
         return $view;
     }
     
+    /**
+     * Edit a blog post
+     * @return \Zend\View\Model\JsonModel | \Zend\View\Model\ViewModel
+     */
     public function editAction()
     {
         $id          = $this->params()->fromRoute("id");
@@ -104,5 +108,19 @@ class BlogPostController extends CommonController
         $id = $this->params()->fromRoute("id");
         $result = $this->getServiceLocator()->get("Application\Service\BlogPost")->delete($id);
         return $this->redirect()->toRoute('blog-post/index');
+    }
+    
+    /**
+     * Parse the old blog data into the new system (only run once)
+     * @return \Zend\View\Model\ViewModel
+     */
+    public function parseLegacyDataAction()
+    {
+        $result = $this->getServiceLocator()->get("Application\Service\BlogPost")->parseLegacyData();
+        $view = new \Zend\View\Model\ViewModel();
+        $view->setVariables(array(
+            'result' => (int)$result
+        ));
+        return $view;
     }
 }
