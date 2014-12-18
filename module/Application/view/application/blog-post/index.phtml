@@ -16,7 +16,8 @@
                             <div class="row">';
         
         $nextColumnSize = 9;
-        if(!empty($post->getTitleImage()) && $post->getTitleImage()!='No image'){
+        $titleImage = $post->getTitleImage();
+        if(!empty($titleImage) && $titleImage!='No image'){
             $nextColumnSize = 6;
             print ' <div class="col-xs-3"><span class="blog_header"><img src="'.$post->getTitleImage().'" style="height:100px;width:100px;" alt="" title="" /></span><br/></div>';
         }
