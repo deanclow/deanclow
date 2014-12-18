@@ -178,6 +178,51 @@ return array(
                     )
                 )
             ),
+            'contact' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route' => '/contact',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Contact',
+                        'action' => 'index'
+                    )
+                ),
+                'child_routes' => array(
+                    'index' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/index',
+                            'defaults' => array(
+                                'action' => 'index',
+                            ),
+                            'constraints' => array(
+                                'id' => '[0-9]*'
+                            ),
+                        ),
+                        'may_terminate' => true
+                    ),
+                )
+            ),
+            'resume' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route' => '/resume',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Resume',
+                        'action' => 'index'
+                    )
+                )
+            ),
+            'about' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route' => '/about',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\About',
+                        'action' => 'index'
+                    )
+                )
+            ),
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
@@ -236,7 +281,8 @@ return array(
             'Application\Controller\BlogPost'       => 'Application\Controller\BlogPostController',
             'Application\Controller\Chess'          => 'Application\Controller\ChessController',
             'Application\Controller\Resume'         => 'Application\Controller\ResumeController',
-            'Application\Controller\About'          => 'Application\Controller\AboutController'
+            'Application\Controller\About'          => 'Application\Controller\AboutController',
+            'Application\Controller\Contact'        => 'Application\Controller\ContactController',
         ),
     ),
     'view_manager' => array(
