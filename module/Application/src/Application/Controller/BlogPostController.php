@@ -9,6 +9,12 @@
 
 namespace Application\Controller;
 use \Application\Controller\CommonController;
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Db\TableGateway\TableGateway;
+use Zend\Db\Sql\Select;
+use Zend\Paginator\Adapter\DbSelect;
+use Zend\Paginator\Paginator;
+use Zend\Paginator\Adapter\Iterator as paginatorIterator;
 
 class BlogPostController extends CommonController
 {
@@ -21,9 +27,14 @@ class BlogPostController extends CommonController
         $service = $this->getServiceLocator()->get("Application\Service\BlogPost");
         $results = $service->fetchAll(null, 'date DESC');
         $results = $this->getServiceLocator()->get("Application\Service\BlogComment")->attachComments($results);
+        $paginator = new \Zend\Paginator\Paginator(new
+            \Zend\Paginator\Adapter\ArrayAdapter($results)
+        );
+        $paginator->setCurrentPageNumber($this->params()->fromRoute("page", 1))
+                  ->setItemCountPerPage(8);   
         $view = $this->acceptableViewModelSelector($this->acceptCriteria);
         $view->setVariables(array(
-            'posts' => $results
+            'posts' => $paginator
         ));
         return $view;
     }

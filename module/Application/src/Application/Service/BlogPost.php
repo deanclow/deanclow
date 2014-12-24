@@ -9,7 +9,7 @@
 
 namespace Application\Service;
 use \Application\Service\CommonService;
-
+ 
 class BlogPost extends CommonService
 {
     /**

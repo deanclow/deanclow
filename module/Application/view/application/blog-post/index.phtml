@@ -4,6 +4,17 @@
         -webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
         transform: rotate(0deg);
     }
+    .pagination{height:36px;margin:18px 0;width:100%;}
+    .pagination ul{display:inline-block;*display:inline;*zoom:1;margin-left:0;margin-bottom:0;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;;}
+    .pagination li{display:inline;}
+    .pagination a{float:left;padding:0 14px;line-height:34px;text-decoration:none;border:1px solid #ddd;border-left-width:0;}
+    .pagination a:hover,.pagination .active a{background-color:#f5f5f5;}
+    .pagination .active a{color:#999999;cursor:default;}
+    .pagination .disabled a,.pagination .disabled a:hover{color:#999999;background-color:transparent;cursor:default;}
+    .pagination li:first-child a{border-left-width:1px;-webkit-border-radius:3px 0 0 3px;-moz-border-radius:3px 0 0 3px;border-radius:3px 0 0 3px;}
+    .pagination li:last-child a{-webkit-border-radius:0 3px 3px 0;-moz-border-radius:0 3px 3px 0;border-radius:0 3px 3px 0;}
+    .pagination-centered{text-align:center;}
+    .pagination-right{text-align:right;}
 </style>
 <div class="blog_box">
     <?php
@@ -16,21 +27,23 @@
                             <div class="row">';
         
         $nextColumnSize = 9;
-        $titleImage = $post->getTitleImage();
-        if(!empty($titleImage) && $titleImage!='No image'){
+        $titleImage = $post['titleImage'];
+        $date = new \DateTime($post['date']);
+        $post['date'] = $date->format('d M Y');
+        if(!empty($titleImage) && strtolower($titleImage)!='no image'){
             $nextColumnSize = 6;
-            print ' <div class="col-xs-3"><span class="blog_header"><img src="'.$post->getTitleImage().'" style="height:100px;width:100px;" alt="" title="" /></span><br/></div>';
+            print ' <div class="col-xs-3"><span class="blog_header"><img src="'.$post['titleImage'].'" style="height:100px;width:100px;" alt="" title="" /></span><br/></div>';
         }
                       print '<div class="col-xs-'.$nextColumnSize.'">
-                                <span class="blog_header">'.$post->getTitle().'</span></div>
-                                <div class="col-xs-3 pull-left"><a class="btn btn-orange" href="/blog-post/show/'.$post->getId().'" role="button">'.$post->getDate().'</a></div>
+                                <span class="blog_header">'.$post['title'].'</span></div>
+                                <div class="col-xs-3 pull-left"><a class="btn btn-orange" href="/blog-post/show/'.$post['id'].'" role="button">'.$post['date'].'</a></div>
                                 <div>    
                                     <div class="pull-left col-xs-9">
-                                        <img style="width:12px;height:12px;" src="/img/thumbs_up.ico" /> '.$post->getUpVotes().'
-                                        &nbsp;&nbsp;<img style="width:12px;height:12px;" src="/img/thumbs_down.ico" /> '.$post->getDownVotes().'
+                                        <img style="width:12px;height:12px;" src="/img/thumbs_up.ico" /> '.$post['upVotes'].'
+                                        &nbsp;&nbsp;<img style="width:12px;height:12px;" src="/img/thumbs_down.ico" /> '.$post['downVotes'].'
                                     </div>
                                     <div class="pull-left col-xs-9">
-                                        '.strip_tags($post->getBriefBody()).'...
+                                        '.strip_tags($post['briefBody']).'...
                                     </div>
                                 </div>
                              </div>
@@ -54,3 +67,7 @@ $(document).ready(function() {
     }, 0);
 });
 </script>
+
+<?php
+echo $this->paginationControl($this->posts, 'Sliding', 'paginator-slide', array('route' => 'blog-post'));
+?>

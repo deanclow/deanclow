@@ -30,7 +30,8 @@ class BlogComment extends CommonService
     {
         $datasource = array();
         foreach($rs as $postModel){
-            $postModel->comments = $this->fetchAll(array('blog_post_id' => $postModel->getId()));
+            $postModel = $postModel->toArray();
+            $postModel['comments'] = $this->fetchAll(array('blog_post_id' => $postModel['id']));
             $datasource[] = $postModel;
         }
         return $datasource;
