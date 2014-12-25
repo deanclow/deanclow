@@ -201,6 +201,12 @@ abstract class CommonService implements ServiceLocatorAwareInterface
         if(is_object($this->getEncoder()) && !$ignoreEncode){
             return $this->getEncoder()->encode($results, 
                                                $this->model);
+        }else{
+            $datasource = array();
+            foreach($results as $row){
+                $datasource[] = $row;
+            }
+            return $datasource;
         }
         return $results;
     }

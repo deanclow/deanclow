@@ -1,25 +1,39 @@
+<?php
+$contents = file_get_contents("http://www.uschess.org/assets/msa_joomla/MbrDtlMain.php?14819401");
+$doc = new DOMDocument();
+$doc->loadHTML('<?xml encoding="UTF-8">' . $contents);
+$pos = strpos($doc->textContent, "Regular Rating", 1);
+$string = substr($doc->textContent, $pos, 23);
+$string = str_replace("\n", "", $string);
+$regularRating = "Regular Rating: ".substr($string, 14, 4);
+$pos = strpos($doc->textContent, "Quick Rating", 1);
+$string = substr($doc->textContent, $pos, 23);
+$string = str_replace("\n", "", $string);
+$quickRating = "Quick Rating: ".substr($string, 12, 4);
+$pos = strpos($doc->textContent, "Blitz Rating", 1);
+$string = substr($doc->textContent, $pos, 23);
+$string = str_replace("\n", "", $string);
+$blitzRating = "Blitz Rating: ".substr($string, 12, 4);
+?>
+
 <script type="text/javascript" src="http://chesstempo.com/js/pgnyui.js"></script>
 <script type="text/javascript" src="http://chesstempo.com/js/pgnviewer.js"></script>  
 <link type="text/css" rel="stylesheet" href="http://chesstempo.com/css/board-min.css"></link> 
-
-<table width="100%">
-    <tr><th>White</th><th>Black</th><th>Date</th><th>Site</th><th>Result</th><th>Play</th>
+<div class="row">
+    <a href="http://www.uschess.org/assets/msa_joomla/MbrDtlMain.php?14819401" target="_blank">Click here to view my current USCF information</a>
+</div>
+<div class="row" style="margin-top:15px;">
+    <strong><u>Current Published Rating</u></strong><br />
     <?php
-    $count = 1;
-    foreach($this->games as $model){
-        print '<tr>';
-        print '<td>'.$model->getWhitePlayer().' ('.$model->getWhiteRating().')</td>';
-        print '<td>'.$model->getBlackPlayer().' ('.$model->getBlackRating().')</td>';
-        print '<td>'.$model->getDate().'</td>';
-        print '<td>'.$model->getSite().'</td>';
-        print '<td>'.$model->getResult().'</td>';
-        //print '<td><a href="/chessgames/edit/'.$model->getId().'">Edit</a></td>';
-        print '<td><a href="/chessgames/show/'.$model->getId().'">Play</a></td>';
-        print '</tr>';
-    }
+    print $regularRating . '<br />';
+    print $quickRating . '<br />';
+    print $blitzRating . '<br />';
     ?>
-</table>
-
+</div>
+<?php
+echo $this->partial('zfc-datagrid/renderer/bootstrapTable/layout', 
+                    $this->viewModel()->getCurrent()->getVariables()); 
+?>
 <script type="text/javascript">
 $(document).ready(function() {
     setTimeout(function(){
@@ -28,3 +42,9 @@ $(document).ready(function() {
     }, 0);
 });
 </script>
+<style>
+    table tr:FIRST-CHILD + tr
+{
+    display:none;
+}
+</style>

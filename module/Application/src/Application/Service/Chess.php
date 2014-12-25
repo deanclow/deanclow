@@ -20,4 +20,16 @@ class Chess extends CommonService
     {
         $this->table = 'chess';
     }
+    
+    public function createDataGridDatasource($rs)
+    {
+        $finalDatasource = array();
+        foreach($rs as $row){
+            $date = new \DateTime($row['date']);
+            $row['date'] = $date->format('d M Y');
+            $row['play'] = '<a href="/chessgames/show/'.$row['id'].'">Play</a>';
+            $finalDatasource[] = $row;
+        }
+        return $finalDatasource;
+    }
 }
