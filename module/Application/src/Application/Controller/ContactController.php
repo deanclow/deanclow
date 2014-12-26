@@ -21,7 +21,7 @@ class ContactController extends CommonController
     public function indexAction()
     {
         $sent = false;
-        $session = new Container('captcha');  
+        $session = new Container('captcha');
         // check if $_SESSION['captcha'] created with AJAX exists
         if(!empty($session->qaptchaKey) && $session->qaptchaKey!="not sent"){
             $myVar = $session->qaptchaKey;
@@ -30,8 +30,8 @@ class ContactController extends CommonController
                 $sent = true;
                 $mail = new Mail\Message();
                 $mail->setBody($this->params()->fromPost('body'));
-                $mail->setFrom($this->params()->fromPost('email'), 'Sender\'s name');
-                $mail->addTo('deanrclow@gmail.com', 'Name of recipient');
+                $mail->setFrom($this->params()->fromPost('email'), 'deanclow.com');
+                $mail->addTo('deanrclow@gmail.com', 'Dean Clow');
                 $mail->setSubject('deanclow.com Contact Us!');
                 try{
                     $transport = new Mail\Transport\Sendmail();

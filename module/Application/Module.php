@@ -11,6 +11,9 @@ namespace Application;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Zend\Session\Config\SessionConfig;
+use Zend\Session\Container;
+use Zend\Session\SessionManager;
 
 class Module
 {
@@ -45,6 +48,13 @@ class Module
     
     public function onBootstrap(MvcEvent $e)
     {
+        //set a custom session config
+        $this->initSession(array(
+            'remember_me_seconds' => 180,
+            'use_cookies' => true,
+            'cookie_httponly' => true,
+            'save_path' => $_SERVER['DOCUMENT_ROOT'] . '/../data/session'
+        ));
         $eventManager = $e->getApplication()->getEventManager();
         $sharedEvents = $eventManager->getSharedManager();
         //when we start to add other modules, we can add the different layouts below
@@ -75,5 +85,14 @@ class Module
                 ),
             ),
         );
+    }
+    
+    public function initSession($config)
+    {
+        $sessionConfig = new SessionConfig();
+        $sessionConfig->setOptions($config);
+        $sessionManager = new SessionManager($sessionConfig);
+        $sessionManager->start();
+        Container::setDefaultManager($sessionManager);
     }
 }
