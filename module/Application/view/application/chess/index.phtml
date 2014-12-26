@@ -1,21 +1,3 @@
-<?php
-$contents = file_get_contents("http://www.uschess.org/assets/msa_joomla/MbrDtlMain.php?14819401");
-$doc = new DOMDocument();
-$doc->loadHTML('<?xml encoding="UTF-8">' . $contents);
-$pos = strpos($doc->textContent, "Regular Rating", 1);
-$string = substr($doc->textContent, $pos, 23);
-$string = str_replace("\n", "", $string);
-$regularRating = "Regular Rating: ".substr($string, 14, 4);
-$pos = strpos($doc->textContent, "Quick Rating", 1);
-$string = substr($doc->textContent, $pos, 23);
-$string = str_replace("\n", "", $string);
-$quickRating = "Quick Rating: ".substr($string, 12, 4);
-$pos = strpos($doc->textContent, "Blitz Rating", 1);
-$string = substr($doc->textContent, $pos, 23);
-$string = str_replace("\n", "", $string);
-$blitzRating = "Blitz Rating: ".substr($string, 12, 4);
-?>
-
 <script type="text/javascript" src="http://chesstempo.com/js/pgnyui.js"></script>
 <script type="text/javascript" src="http://chesstempo.com/js/pgnviewer.js"></script>  
 <link type="text/css" rel="stylesheet" href="http://chesstempo.com/css/board-min.css"></link> 
@@ -24,11 +6,11 @@ $blitzRating = "Blitz Rating: ".substr($string, 12, 4);
 </div>
 <div class="row" style="margin-top:15px;">
     <strong><u>Current Published Rating</u></strong><br />
-    <?php
-    print $regularRating . '<br />';
-    print $quickRating . '<br />';
-    print $blitzRating . '<br />';
-    ?>
+    <p>
+        Regular Rating: 2005<br />
+        Quick Rating:&nbsp;&nbsp;&nbsp;&nbsp;1878<br />
+        Blitz Rating:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1936
+    </p>
 </div>
 <?php
 echo $this->partial('zfc-datagrid/renderer/bootstrapTable/layout', 

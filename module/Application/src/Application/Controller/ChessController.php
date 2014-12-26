@@ -20,8 +20,7 @@ class ChessController extends CommonController
     public function indexAction()
     {
         $service = $this->getServiceLocator()->get("Application\Service\Chess");
-        $games   = $service->fetchAll(null, "date DESC", true);
-        
+        $games   = $service->fetchAll(null, "date DESC", true);   
         $grid = $this->getServiceLocator()->get('ZfcDatagrid\Datagrid');
         $grid->setTitle('Chess Games');
         $datasource = $service->createDataGridDatasource($games);

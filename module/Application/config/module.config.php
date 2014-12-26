@@ -202,6 +202,19 @@ return array(
                         ),
                         'may_terminate' => true
                     ),
+                    'captcha' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/captcha',
+                            'defaults' => array(
+                                'action' => 'captcha',
+                            ),
+                            'constraints' => array(
+                                'id' => '[0-9]*'
+                            ),
+                        ),
+                        'may_terminate' => true
+                    ),
                 )
             ),
             'resume' => array(
