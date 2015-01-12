@@ -21,4 +21,8 @@ return array(
          'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
       ),
    ),
+   'module_layouts' => array(
+       'Application' => 'layout/layout.phtml',
+       'Wedding'     => 'layout/wedding.phtml',
+   ),
 );
