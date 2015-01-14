@@ -1,0 +1,82 @@
+<div class="col-sm-12 col-md-12" style="text-align:center;">
+    <p style="width:100%;text-align:center;"><img src="/weddingpics/background.png" /></p>
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    <fieldset>
+        <input type="hidden" name="submitted" value="1" />
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <span style="color:red;">*</span> <label for="code">Please enter your code</label> 
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <input type="text" required name="code" id="code" />
+            </div>
+        </div>
+        <div class="row" style="margin-top:5px;">
+            <div class="col-sm-6 col-md-6">
+                <span style="color:red;">*</span> <label for="rsvpType">I will be...</label>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <input type="radio" name="rsvpType" value="Coming +1" CHECKED /> Coming +1 <input type="text" name="plusOne" id="plusOne" /><br />
+                <input type="radio" onclick="$('#plusOne').val('');" name="rsvpType" value="Coming" /> Coming<br />
+                <input type="radio" onclick="$('#plusOne').val('');" name="rsvpType" value="Not coming" /> Can't make it, sorry
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-4">
+                <input type="submit" value="Submit" />
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    setTimeout(function(){
+       $(".nav li").attr("class", "");  
+       $("#rsvpNav").attr("class", "active"); 
+       <?php
+       if($this->hasSubmitted){
+            print '$("#basicModal").modal(\'show\');setTimeout(function(){$("#basicModal").modal(\'hide\');}, 3000);';
+       }
+       if($this->hasError){
+            print '$("#errorModal").modal(\'show\');setTimeout(function(){$("#errorModal").modal(\'hide\');}, 8000);';
+       }
+       ?>
+    }, 0);
+});
+</script>
+
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">THANK YOU!</h4>
+            </div>
+            <div class="modal-body">
+                <h3>Your RSVP has been recorded! Thank you!</h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">OOPS!</h4>
+            </div>
+            <div class="modal-body">
+                <h4>The code you used does not appear valid.</h4>
+                <p>If the problem continues, please email <a href="mailto:deanrclow@gmail.com">deanrclow@gmail.com</a></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+        </div>
+    </div>
+  </div>
+</div>

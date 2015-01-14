@@ -1,0 +1,35 @@
+<form method="post" enctype="multipart/form-data">
+    <fieldset>
+        <input type="hidden" name="submitted" value="1" />
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <span style="color:red;">*</span> <label for="name">Name</label> 
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <input type="text" name="name" id="name" required value="<?php print $this->model->getName(); ?>" />
+            </div>
+        </div>
+        <div class="row" style="margin-top:5px;">
+            <div class="col-sm-6 col-md-6">
+                <span style="color:red;">*</span> <label for="code">Code</label>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <input type="text" name="code" id="code" required value="<?php print $this->model->getCode(); ?>" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-4">
+                <input type="submit" value="Submit" />
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    setTimeout(function(){
+       $(".nav li").attr("class", "");  
+       $("#rsvpNav").attr("class", "active"); 
+    }, 0);
+});
+</script>

@@ -21,11 +21,11 @@ class Module
     {    
          return array(
             'factories' => array(
-                'Application\Service\BlogComment' => function ($sm) {
-                    $service = new \Application\Service\BlogComment($sm);
+                'Wedding\Service\Rsvp' => function ($sm) {
+                    $service = new \Wedding\Service\Rsvp($sm);
                     $service->setDb($sm->get('Zend\Db\Adapter\Adapter'));
-                    $service->setEncoder(new \Application\Service\Encoder\BlogComment());
-                    $service->setModel(new \Application\Model\BlogComment());
+                    $service->setEncoder(new \Wedding\Service\Encoder\Rsvp());
+                    $service->setModel(new \Wedding\Model\Rsvp());
                     return $service;
                 },
             )

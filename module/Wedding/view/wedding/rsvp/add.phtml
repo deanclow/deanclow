@@ -1,0 +1,11 @@
+<?php
+
+/**
+ * The add rsvp
+ * @author Dean Clow
+ * @copyright 2015
+ */
+
+print '<h1>Add an RSVP recipient</h1>';
+echo $this->partial('wedding/rsvp/form.phtml', 
+                    array('model' => $this->model));

@@ -1,4 +1,16 @@
-<p>Stay tuned!</p>
+<h3>Below is a list of the current RSVP's and their status.</h3>
+<a href="/wedding/rsvp/add">Add an RSVP</a>
+
+<?php
+echo $this->partial('zfc-datagrid/renderer/bootstrapTable/layout', 
+                    $this->viewModel()->getCurrent()->getVariables()); 
+?>
+<style>
+    table tr:FIRST-CHILD + tr
+{
+    display:none;
+}
+</style>
 
 <script type="text/javascript">
 $(document).ready(function() {

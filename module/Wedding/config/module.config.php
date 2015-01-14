@@ -113,7 +113,7 @@ return array(
             'rsvp' => array(
                 'type' => 'literal',
                 'options' => array(
-                    'route' => '/rsvp',
+                    'route' => '/wedding/rsvp',
                     'defaults' => array(
                         'controller' => 'Wedding\Controller\Rsvp',
                         'action' => 'index'
@@ -126,6 +126,58 @@ return array(
                             'route'    => '/index',
                             'defaults' => array(
                                 'action' => 'index',
+                            ),
+                            'constraints' => array(
+                                'id' => '[0-9]*'
+                            ),
+                        ),
+                        'may_terminate' => true
+                    ),
+                    'add' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/add',
+                            'defaults' => array(
+                                'action' => 'add',
+                            ),
+                            'constraints' => array(
+                                'id' => '[0-9]*'
+                            ),
+                        ),
+                        'may_terminate' => true
+                    ),
+                    'edit' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/edit/:id',
+                            'defaults' => array(
+                                'action' => 'edit',
+                            ),
+                            'constraints' => array(
+                                'id' => '[0-9]*'
+                            ),
+                        ),
+                        'may_terminate' => true
+                    ),
+                    'delete' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/delete/:id',
+                            'defaults' => array(
+                                'action' => 'delete',
+                            ),
+                            'constraints' => array(
+                                'id' => '[0-9]*'
+                            ),
+                        ),
+                        'may_terminate' => true
+                    ),
+                    'rsvp' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/rsvp/:id',
+                            'defaults' => array(
+                                'action' => 'rsvp',
                             ),
                             'constraints' => array(
                                 'id' => '[0-9]*'
