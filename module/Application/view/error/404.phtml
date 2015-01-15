@@ -6,7 +6,7 @@
 $reasonMessage= '';
 switch ($this->reason) {
     case 'error-controller-cannot-dispatch':
-        $reasonMessage = $this->translate('The requested controller was unable to dispatch the request.');
+        $reasonMessage = $this->translate('Either the page doesn\'t exist or you don\'t have permission to see it!');
         break;
     case 'error-controller-not-found':
         $reasonMessage = $this->translate('The requested controller could not be mapped to an existing controller class.');

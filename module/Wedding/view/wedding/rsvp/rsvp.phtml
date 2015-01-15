@@ -1,3 +1,6 @@
+<link rel="stylesheet" type="text/css" href="/js/qaptcha/jquery/QapTcha.jquery.css" media="screen" />
+<script type="text/javascript" src="/js/qaptcha/jquery/QapTcha.jquery.js"></script>
+
 <div class="col-sm-12 col-md-12" style="text-align:center;">
     <p style="width:100%;text-align:center;"><img src="/weddingpics/background.png" /></p>
 </div>
@@ -23,9 +26,20 @@
                 <input type="radio" onclick="$('#plusOne').val('');" name="rsvpType" value="Not coming" /> Can't make it, sorry
             </div>
         </div>
+        <div class="row" style="margin-top:25px;">
+            <div class="col-sm-6 col-md-6">
+                &nbsp;
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <div class="QapTcha" style="margin-top:-5px;"></div>
+            </div>
+        </div>
         <div class="row">
-            <div class="col-md-offset-4">
-                <input type="submit" value="Submit" />
+            <div class="col-sm-6 col-md-6">
+                &nbsp;
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <input class="btn btn-lg btn-orange" style="background-color:#738965;border-bottom:2px solid #738965" type="submit" value="Submit" />
             </div>
         </div>
     </fieldset>
@@ -33,6 +47,15 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
+    $('.QapTcha').QapTcha({
+      autoSubmit : false,
+      autoRevert : true,
+      PHPfile : '/contact/captcha',
+      txtLock : "Please use the slider to show you're human!",
+      txtUnlock : "Thank you, you can submit now",
+      disabledSubmit : true
+    });
+    
     setTimeout(function(){
        $(".nav li").attr("class", "");  
        $("#rsvpNav").attr("class", "active"); 
