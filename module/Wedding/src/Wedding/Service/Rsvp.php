@@ -32,8 +32,8 @@ class Rsvp extends CommonService
         foreach($rs as $row){
             if($row['status']=='Coming +1'){
                 $row['status'] = 'Coming +1 ('.$row['plus_one_name'].')';
-                $row['edit']   = '<a href="/wedding/rsvp/edit/'.$row['id'].'">Edit</a>';
-                $row['delete']   = '<a href="/wedding/rsvp/delete/'.$row['id'].'">Delete</a>';
+                $row['edit']   = '<a href="/rsvp/edit/'.$row['id'].'">Edit</a>';
+                $row['delete']   = '<a href="/rsvp/delete/'.$row['id'].'">Delete</a>';
             }
             $finalDatasource[] = $row;
         }

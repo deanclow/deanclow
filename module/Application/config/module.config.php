@@ -20,223 +20,90 @@ return array(
                     ),
                 ),
             ),
+            'login' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/user[/:action][/:id]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'id'     => '[0-9]+',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Application\Controller\User',
+                         'action'     => 'index',
+                     ),
+                 ),
+             ),
             'blog-post' => array(
-                'type' => 'literal',
-                'options' => array(
-                    'route' => '/blog-post',
-                    'defaults' => array(
-                        'controller' => 'Application\Controller\BlogPost',
-                        'action' => 'index'
-                    )
-                ),
-                'child_routes' => array(
-                    'index' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/index[/page/:page]',
-                            'page' => '[0-9]+',
-                            'defaults' => array(
-                                'action' => 'index',
-                            ),
-                            'constraints' => array(
-                                'id' => '[0-9]*'
-                            ),
-                        ),
-                        'may_terminate' => true
-                    ),
-                    'show' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/show/:id',
-                            'defaults' => array(
-                                'action' => 'show',
-                            ),
-                            'constraints' => array(
-                                'id' => '[0-9]*'
-                            ),
-                        ),
-                        'may_terminate' => true
-                    ),
-                    'add' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/add',
-                            'defaults' => array(
-                                'action' => 'add',
-                            ),
-                            'constraints' => array(
-                                'id' => '[0-9]*'
-                            ),
-                        ),
-                        'may_terminate' => true
-                    ),
-                    'edit' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/edit/:id',
-                            'defaults' => array(
-                                'action' => 'edit',
-                            ),
-                            'constraints' => array(
-                                'id' => '[0-9]*'
-                            ),
-                        ),
-                        'may_terminate' => true
-                    ),
-                    'delete' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/delete/:id',
-                            'defaults' => array(
-                                'action' => 'delete',
-                            ),
-                            'constraints' => array(
-                                'id' => '[0-9]*'
-                            ),
-                        ),
-                        'may_terminate' => true
-                    ),
-                    'parse-legacy-data' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/parse-legacy-data',
-                            'defaults' => array(
-                                'action' => 'parse-legacy-data',
-                            ),
-                            'constraints' => array(
-                                'id' => '[0-9]*'
-                            ),
-                        ),
-                        'may_terminate' => true
-                    ),
-                )
-            ),
-            'blog-comment' => array(
-                'type' => 'literal',
-                'options' => array(
-                    'route' => '/blog-comment',
-                    'defaults' => array(
-                        'controller' => 'Application\Controller\BlogComment',
-                        'action' => 'index'
-                    )
-                )
-            ),
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/blog-post[/:action][/:id]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'id'     => '[0-9]+',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Application\Controller\BlogPost',
+                         'action'     => 'index',
+                     ),
+                 ),
+             ),
             'chess' => array(
-                'type' => 'literal',
-                'options' => array(
-                    'route' => '/chessgames',
-                    'defaults' => array(
-                        'controller' => 'Application\Controller\Chess',
-                        'action' => 'index'
-                    )
-                ),
-                'child_routes' => array(
-                    'show' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/show[/:id]',
-                            'defaults' => array(
-                                'action' => 'show',
-                            ),
-                            'constraints' => array(
-                                'id' => '[0-9]*'
-                            ),
-                        ),
-                        'may_terminate' => true
-                    ),
-                    'index' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/index',
-                            'defaults' => array(
-                                'action' => 'index',
-                            ),
-                            'constraints' => array(
-                                'id' => '[0-9]*'
-                            ),
-                        ),
-                        'may_terminate' => true
-                    ),
-                )
-            ),
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/chessgames[/:action][/:id]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'id'     => '[0-9]+',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Application\Controller\Chess',
+                         'action'     => 'index',
+                     ),
+                 ),
+             ),
             'resume' => array(
-                'type' => 'literal',
-                'options' => array(
-                    'route' => '/resume',
-                    'defaults' => array(
-                        'controller' => 'Application\Controller\Resume',
-                        'action' => 'index'
-                    )
-                )
-            ),
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/resume[/:action][/:id]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'id'     => '[0-9]+',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Application\Controller\Resume',
+                         'action'     => 'index',
+                     ),
+                 ),
+             ),
             'about' => array(
-                'type' => 'literal',
-                'options' => array(
-                    'route' => '/about',
-                    'defaults' => array(
-                        'controller' => 'Application\Controller\About',
-                        'action' => 'index'
-                    )
-                )
-            ),
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/about[/:action][/:id]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'id'     => '[0-9]+',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Application\Controller\About',
+                         'action'     => 'index',
+                     ),
+                 ),
+             ),
             'contact' => array(
-                'type' => 'literal',
-                'options' => array(
-                    'route' => '/contact',
-                    'defaults' => array(
-                        'controller' => 'Application\Controller\Contact',
-                        'action' => 'index'
-                    )
-                ),
-                'child_routes' => array(
-                    'index' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/index',
-                            'defaults' => array(
-                                'action' => 'index',
-                            ),
-                            'constraints' => array(
-                                'id' => '[0-9]*'
-                            ),
-                        ),
-                        'may_terminate' => true
-                    ),
-                    'captcha' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/captcha',
-                            'defaults' => array(
-                                'action' => 'captcha',
-                            ),
-                            'constraints' => array(
-                                'id' => '[0-9]*'
-                            ),
-                        ),
-                        'may_terminate' => true
-                    ),
-                )
-            ),
-            'resume' => array(
-                'type' => 'literal',
-                'options' => array(
-                    'route' => '/resume',
-                    'defaults' => array(
-                        'controller' => 'Application\Controller\Resume',
-                        'action' => 'index'
-                    )
-                )
-            ),
-            'about' => array(
-                'type' => 'literal',
-                'options' => array(
-                    'route' => '/about',
-                    'defaults' => array(
-                        'controller' => 'Application\Controller\About',
-                        'action' => 'index'
-                    )
-                )
-            ),
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/contact[/:action][/:id]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'id'     => '[0-9]+',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Application\Controller\Contact',
+                         'action'     => 'index',
+                     ),
+                 ),
+             ),
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
@@ -297,6 +164,7 @@ return array(
             'Application\Controller\Resume'         => 'Application\Controller\ResumeController',
             'Application\Controller\About'          => 'Application\Controller\AboutController',
             'Application\Controller\Contact'        => 'Application\Controller\ContactController',
+            'Application\Controller\User'           => 'Application\Controller\UserController',
         ),
     ),
     'view_manager' => array(
@@ -319,6 +187,11 @@ return array(
         'strategies' => array(
             'ViewJsonStrategy',
         ),
+    ),
+    'view_helpers' => array(
+        'invokables'=> array(
+            'identityHelper' => 'Application\View\Helper\IdentityHelper'  
+        )
     ),
     // Placeholder for console routes
     'console' => array(

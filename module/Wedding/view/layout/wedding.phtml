@@ -42,12 +42,25 @@ http://www.templatemo.com/preview/templatemo_395_urbanic
                     <div class="container">
                         <div class="navbar-collapse collapse" id="templatemo-nav-bar">
                             <ul class="nav navbar-nav navbar-right" style="margin-top: 5px;">
-                                <li class="active" id="homeNav"><a onclick="window.location.href='/wedding/index';" href="#">HOME</a></li>
-                                <li id="aboutNav"><a onclick="window.location.href='/wedding/about';" href="#">ABOUT</a></li>
-                                <li id="rsvpNav"><a onclick="window.location.href='/wedding/rsvp/rsvp';" href="#">RSVP</a></li>
-                                <li id="registryNav"><a onclick="window.location.href='/wedding/registry';" href="#">REGISTRY</a></li>
-                                <li id="contactNav"><a onclick="window.location.href='/weddingcontact/index';" href="#">CONTACT</a></li>
-                                <li><a href="#">LOG IN</a></li>
+                                <?php
+                                $hasIdentity = $this->identityHelper();
+                                if($hasIdentity){
+                                    print <<<HTML
+<li class="active" id="homeNav"><a onclick="window.location.href='/wedding';" href="#">HOME</a></li>
+<li id="rsvpNav"><a onclick="window.location.href='/rsvp';" href="#">RSVP</a></li>
+<li><a href="/weddinguser/logout">LOG OUT</a></li>
+HTML;
+                                }else{
+                                    print <<<HTML
+<li class="active" id="homeNav"><a onclick="window.location.href='/wedding';" href="#">HOME</a></li>
+<li id="aboutNav"><a onclick="window.location.href='/weddingabout';" href="#">ABOUT</a></li>
+<li id="rsvpNav"><a onclick="window.location.href='/rsvp/rsvp';" href="#">RSVP</a></li>
+<li id="registryNav"><a onclick="window.location.href='/registry';" href="#">REGISTRY</a></li>
+<li id="contactNav"><a onclick="window.location.href='/weddingcontact';" href="#">CONTACT</a></li>
+<li><a href="/weddinguser/login">LOG IN</a></li>
+HTML;
+                                }
+                                ?>
                             </ul>
                         </div><!--/.nav-collapse -->
                     </div><!--/.container-fluid -->

@@ -16,6 +16,14 @@
     .pagination-centered{text-align:center;}
     .pagination-right{text-align:right;}
 </style>
+
+<?php
+$hasIdentity = $this->identityHelper();
+if($hasIdentity){
+    print '<a href="/blog-post/add">Add a blog post</a>';
+}
+?>
+
 <div class="blog_box">
     <?php
     
@@ -36,7 +44,16 @@
         }
                       print '<div class="col-xs-'.$nextColumnSize.'">
                                 <span class="blog_header">'.$post['title'].'</span></div>
-                                <div class="col-xs-3 pull-left"><a class="btn btn-orange" href="/blog-post/show/'.$post['id'].'" role="button">'.$post['date'].'</a></div>
+                                <div class="col-xs-3 pull-left">';
+                      
+                      $hasIdentity = $this->identityHelper();
+                      if($hasIdentity){
+                          print '<a class="btn btn-orange" href="/blog-post/edit/'.$post['id'].'" role="button">'.$post['date'].'</a>';
+                      }else{
+                          print '<a class="btn btn-orange" href="/blog-post/show/'.$post['id'].'" role="button">'.$post['date'].'</a>';
+                      }
+                          
+                          print '</div>
                                 <div>    
                                     <div class="pull-left col-xs-9">
                                         <img style="width:12px;height:12px;" src="/img/thumbs_up.ico" /> '.$post['upVotes'].'

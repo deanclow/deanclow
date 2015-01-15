@@ -45,7 +45,15 @@ http://www.templatemo.com/preview/templatemo_395_urbanic
                     <div id="email" class="pull-right">
                             <img src="/template/images/email.png" alt="email"/>
                             <a href="mailto:deanrclow@gmail.com" style="color:#e67e22">deanrclow@gmail.com</a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-green" href="#" role="button">Log in</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <?php
+                            $hasIdentity = $this->identityHelper();
+                            if($hasIdentity){
+                                print '<a class="btn btn-green" href="/user/logout" role="button">Log out</a>';  
+                            }else{
+                                print '<a class="btn btn-green" href="/user/login" role="button">Log in</a>';  
+                            }
+                            ?>
                     </div>
                 </div>
             </div>
@@ -68,10 +76,10 @@ http://www.templatemo.com/preview/templatemo_395_urbanic
                                 <li id="homeNav"><a onclick="window.location.href='/';" href="#">HOME</a></li>
                                 <li id="aboutNav"><a onclick="window.location.href='/about';" href="#">ABOUT</a></li>
                                 <li id="resumeNav"><a onclick="window.location.href='/resume';" href="#">RESUME</a></li>
-                                <li id="blogNav"><a onclick="window.location.href='/blog-post/index';" href="#">BLOG</a></li>
-                                <li id="chessNav"><a onclick="window.location.href='/chessgames/index';" href="#">CHESS</a></li>
+                                <li id="blogNav"><a onclick="window.location.href='/blog-post';" href="#">BLOG</a></li>
+                                <li id="chessNav"><a onclick="window.location.href='/chessgames';" href="#">CHESS</a></li>
                                 <li><a href="http://alanadean.com" target="_blank">WEDDING</a></li>
-                                <li id="contactNav"><a onclick="window.location.href='/contact/index';" href="#">CONTACT</a></li>
+                                <li id="contactNav"><a onclick="window.location.href='/contact';" href="#">CONTACT</a></li>
                             </ul>
                         </div><!--/.nav-collapse -->
                     </div><!--/.container-fluid -->

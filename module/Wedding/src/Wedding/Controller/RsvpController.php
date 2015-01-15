@@ -60,7 +60,7 @@ class RsvpController extends CommonController
                   ->setCode($this->params()->fromPost('code'));
             $model = $this->getServiceLocator()->get("Wedding\Service\Rsvp")->insert($model);
             //redirect to the index page
-            return $this->redirect()->toRoute('rsvp/index');
+            return $this->redirect()->toRoute('rsvp');
         }
         $view = new \Zend\View\Model\ViewModel();
         $view->setVariables(array('model' => $model));
@@ -82,7 +82,7 @@ class RsvpController extends CommonController
                   ->setCode($this->params()->fromPost('code'));
             $model = $this->getServiceLocator()->get("Wedding\Service\Rsvp")->update($model);
             //redirect to the index page
-            return $this->redirect()->toRoute('rsvp/index');
+            return $this->redirect()->toRoute('rsvp');
         }
         $view = new \Zend\View\Model\ViewModel();
         $view->setVariables(array('model' => $model));
@@ -96,7 +96,7 @@ class RsvpController extends CommonController
     public function deleteAction()
     {
         $this->getServiceLocator()->delete($this->params()->fromRoute("id"));
-        return $this->redirect()->toRoute('rsvp/index');
+        return $this->redirect()->toRoute('rsvp');
     }
     
     /**

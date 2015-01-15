@@ -10,208 +10,90 @@
 return array(
     'router' => array(
         'routes' => array(
-            'index' => array(
-                'type' => 'literal',
-                'options' => array(
-                    'route' => '/index',
-                    'defaults' => array(
-                        'controller' => 'Wedding\Controller\Index',
-                        'action' => 'index'
-                    )
-                ),
-                'child_routes' => array(
-                    'index' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/index',
-                            'defaults' => array(
-                                'action' => 'index',
-                            ),
-                            'constraints' => array(
-                                'id' => '[0-9]*'
-                            ),
-                        ),
-                        'may_terminate' => true
-                    ),
-                )
-            ),
-            'gallery' => array(
-                'type' => 'literal',
-                'options' => array(
-                    'route' => '/gallery',
-                    'defaults' => array(
-                        'controller' => 'Wedding\Controller\Gallery',
-                        'action' => 'index'
-                    )
-                ),
-                'child_routes' => array(
-                    'index' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/index',
-                            'defaults' => array(
-                                'action' => 'index',
-                            ),
-                            'constraints' => array(
-                                'id' => '[0-9]*'
-                            ),
-                        ),
-                        'may_terminate' => true
-                    ),
-                )
-            ),
+            'weddingindex' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/wedding[/:action][/:id]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'id'     => '[0-9]+',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Wedding\Controller\Index',
+                         'action'     => 'index',
+                     ),
+                 ),
+             ),
             'weddingabout' => array(
-                'type' => 'literal',
-                'options' => array(
-                    'route' => '/weddingabout',
-                    'defaults' => array(
-                        'controller' => 'Wedding\Controller\About',
-                        'action' => 'index'
-                    )
-                ),
-                'child_routes' => array(
-                    'index' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/index',
-                            'defaults' => array(
-                                'action' => 'index',
-                            ),
-                            'constraints' => array(
-                                'id' => '[0-9]*'
-                            ),
-                        ),
-                        'may_terminate' => true
-                    ),
-                )
-            ),
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/weddingabout[/:action][/:id]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'id'     => '[0-9]+',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Wedding\Controller\About',
+                         'action'     => 'index',
+                     ),
+                 ),
+             ),
+            'weddinguser' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/weddinguser[/:action][/:id]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'id'     => '[0-9]+',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Wedding\Controller\User',
+                         'action'     => 'index',
+                     ),
+                 ),
+             ),
             'weddingcontact' => array(
-                'type' => 'literal',
-                'options' => array(
-                    'route' => '/weddingcontact',
-                    'defaults' => array(
-                        'controller' => 'Wedding\Controller\Contact',
-                        'action' => 'index'
-                    )
-                ),
-                'child_routes' => array(
-                    'index' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/index',
-                            'defaults' => array(
-                                'action' => 'index',
-                            ),
-                            'constraints' => array(
-                                'id' => '[0-9]*'
-                            ),
-                        ),
-                        'may_terminate' => true
-                    ),
-                )
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/weddingcontact[/:action][/:id]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'id'     => '[0-9]+',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Wedding\Controller\Contact',
+                         'action'     => 'index',
+                     ),
+                 ),
             ),
             'rsvp' => array(
-                'type' => 'literal',
-                'options' => array(
-                    'route' => '/wedding/rsvp',
-                    'defaults' => array(
-                        'controller' => 'Wedding\Controller\Rsvp',
-                        'action' => 'index'
-                    )
-                ),
-                'child_routes' => array(
-                    'index' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/index',
-                            'defaults' => array(
-                                'action' => 'index',
-                            ),
-                            'constraints' => array(
-                                'id' => '[0-9]*'
-                            ),
-                        ),
-                        'may_terminate' => true
-                    ),
-                    'add' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/add',
-                            'defaults' => array(
-                                'action' => 'add',
-                            ),
-                            'constraints' => array(
-                                'id' => '[0-9]*'
-                            ),
-                        ),
-                        'may_terminate' => true
-                    ),
-                    'edit' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/edit/:id',
-                            'defaults' => array(
-                                'action' => 'edit',
-                            ),
-                            'constraints' => array(
-                                'id' => '[0-9]*'
-                            ),
-                        ),
-                        'may_terminate' => true
-                    ),
-                    'delete' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/delete/:id',
-                            'defaults' => array(
-                                'action' => 'delete',
-                            ),
-                            'constraints' => array(
-                                'id' => '[0-9]*'
-                            ),
-                        ),
-                        'may_terminate' => true
-                    ),
-                    'rsvp' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/rsvp/:id',
-                            'defaults' => array(
-                                'action' => 'rsvp',
-                            ),
-                            'constraints' => array(
-                                'id' => '[0-9]*'
-                            ),
-                        ),
-                        'may_terminate' => true
-                    ),
-                )
-            ),
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/rsvp[/:action][/:id]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'id'     => '[0-9]+',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Wedding\Controller\Rsvp',
+                         'action'     => 'index',
+                     ),
+                 ),
+             ),
             'registry' => array(
-                'type' => 'literal',
-                'options' => array(
-                    'route' => '/registry',
-                    'defaults' => array(
-                        'controller' => 'Wedding\Controller\Registry',
-                        'action' => 'index'
-                    )
-                ),
-                'child_routes' => array(
-                    'index' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/index',
-                            'defaults' => array(
-                                'action' => 'index',
-                            ),
-                            'constraints' => array(
-                                'id' => '[0-9]*'
-                            ),
-                        ),
-                        'may_terminate' => true
-                    ),
-                )
-            ),
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/registry[/:action][/:id]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                         'id'     => '[0-9]+',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Wedding\Controller\Registry',
+                         'action'     => 'index',
+                     ),
+                 ),
+             ),
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
@@ -271,6 +153,7 @@ return array(
             'Wedding\Controller\Contact'   => 'Wedding\Controller\ContactController',
             'Wedding\Controller\Rsvp'      => 'Wedding\Controller\RsvpController',
             'Wedding\Controller\Registry'  => 'Wedding\Controller\RegistryController',
+            'Wedding\Controller\User'      => 'Wedding\Controller\UserController'
         ),
     ),
     'view_manager' => array(
