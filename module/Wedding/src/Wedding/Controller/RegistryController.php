@@ -18,6 +18,17 @@ class RegistryController extends CommonController
      */
     public function indexAction()
     {
-        return $this->acceptableViewModelSelector($this->acceptCriteria);
+        $view = new \Zend\View\Model\ViewModel();
+        return $view;
+    }
+    
+    /**
+     * Thank you page
+     * @return \Zend\View\Model\ViewModel
+     */
+    public function thankYouAction()
+    {
+        $view = new \Zend\View\Model\ViewModel();
+        return $view;
     }
 }

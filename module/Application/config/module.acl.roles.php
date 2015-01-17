@@ -22,7 +22,8 @@ return array(
         'weddingcontact/index',
         'weddingcontact/captcha',
         'weddinguser/login',
-        'weddinguser/logout'
+        'weddinguser/logout',
+        'registry/thank-you'
     ),
     'admin'=> array(
         'about',

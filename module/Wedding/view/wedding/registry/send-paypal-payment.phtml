@@ -1,0 +1,47 @@
+<h1>Send PayPal Payment</h1>
+<p>NOTE: All payments will go to <a href="mailto:deanrclow@gmail.com">deanrclow@gmail.com</a> via PayPal.</p>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+  <input type="hidden" name="cmd" value="_donations" />
+  <input type="hidden" name="business" value="deanrclow@gmail.com" />
+  <input type="hidden" name="undefined_quantity" value="1" />
+  <input type="hidden" name="item_name" value="Alana &amp; Dean's Wedding Registry" />
+  <input type="hidden" name="item_number" value="1" />
+  <input type="hidden" name="shipping" value="0.00" />
+  <input type="hidden" name="no_shipping" value="1" />
+  <input type="hidden" name="currency_code" value="USD" />
+  <input type="hidden" name="lc" value="US" />
+  <input type="hidden" name="return" value="http://deanclow.local/weddingregistry/thank-you" />
+    <fieldset>
+        <input type="hidden" name="submitted" value="1" />
+        <div class="row" style="margin-top:10px;">
+            <div class="col-sm-6 col-md-6">
+                <label for="cn">Please enter your Name &amp; any comments</label>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <textarea name="cn" id="cn" class="col-sm-12 col-md-12" rows="5" required></textarea>
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px;">
+            <div class="col-sm-6 col-md-6">
+                <span style="color:red;">*</span> <label for="amount">Amount</label>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                $<input type="text" name="amount" id="amount" style="width:80px;" value="0.00" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-4">
+                <input class="btn btn-lg btn-orange" style="background-color:#738965;border-bottom:2px solid #738965" type="submit" value="Submit" />
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    setTimeout(function(){
+       $(".nav li").attr("class", "");  
+       $("#registryNav").attr("class", "active"); 
+    }, 0);
+});
+</script>

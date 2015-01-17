@@ -10,6 +10,8 @@
     "require": {
         "php": ">=5.3.3",
         "zendframework/zendframework": "2.3.*",
-        "thadafinser/zfc-datagrid": "dev-master"
+        "thadafinser/zfc-datagrid": "dev-master",
+        "ext-curl": "*",
+        "ext-json": "*"
     }
 }
