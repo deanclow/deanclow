@@ -6,8 +6,7 @@ echo $this->partial('zfc-datagrid/renderer/bootstrapTable/layout',
                     $this->viewModel()->getCurrent()->getVariables()); 
 ?>
 <style>
-    table tr:FIRST-CHILD + tr
-{
+table thead tr + tr{
     display:none;
 }
 </style>

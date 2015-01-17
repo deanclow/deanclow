@@ -16,6 +16,7 @@ return array(
         'contact/captcha',
         'wedding/index',
         'rsvp/rsvp',
+        'rsvp/search-for-code',
         'weddingabout/index',
         'registry/index',
         'weddingcontact/index',

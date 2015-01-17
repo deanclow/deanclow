@@ -20,13 +20,16 @@ class RsvpController extends CommonController
     public function indexAction()
     {
         $service = $this->getServiceLocator()->get("Wedding\Service\Rsvp");
-        $rsvps   = $service->fetchAll(null, null, true);   
+        $rsvps   = $service->fetchAll(null, "name", true);   
         $grid = $this->getServiceLocator()->get('ZfcDatagrid\Datagrid');
         $grid->setTitle('Rsvp\'s');
         $datasource = $service->createDataGridDatasource($rsvps);
         $grid->setDataSource($datasource);
         $col = new Column\Select('name');
         $col->setLabel('Name');
+        $grid->addColumn($col);
+        $col = new Column\Select('plus_one_name');
+        $col->setLabel('Guest');
         $grid->addColumn($col);
         $col = new Column\Select('code');
         $col->setLabel('Unique Code');
@@ -57,6 +60,7 @@ class RsvpController extends CommonController
         if(!is_null($name)){
             //post submit
             $model->setName($name)
+                  ->setPlusOneName($this->params()->fromPost('guestName'))
                   ->setCode($this->params()->fromPost('code'));
             $model = $this->getServiceLocator()->get("Wedding\Service\Rsvp")->insert($model);
             //redirect to the index page
@@ -79,6 +83,7 @@ class RsvpController extends CommonController
         if(!is_null($name)){
             //post submit
             $model->setName($name)
+                  ->setPlusOneName($this->params()->fromPost('guestName'))
                   ->setCode($this->params()->fromPost('code'));
             $model = $this->getServiceLocator()->get("Wedding\Service\Rsvp")->update($model);
             //redirect to the index page
@@ -95,7 +100,7 @@ class RsvpController extends CommonController
      */
     public function deleteAction()
     {
-        $this->getServiceLocator()->delete($this->params()->fromRoute("id"));
+        $this->getServiceLocator()->get("Wedding\Service\Rsvp")->delete($this->params()->fromRoute("id"));
         return $this->redirect()->toRoute('rsvp');
     }
     
@@ -124,6 +129,25 @@ class RsvpController extends CommonController
         $view = new \Zend\View\Model\ViewModel();
         $view->setVariables(array('hasSubmitted' => $hasSubmitted,
                                   'hasError'     => $hasError));
+        return $view;
+    }
+    
+    /**
+     * Search for a users code
+     * @return \Zend\View\Model\JsonModel
+     */
+    public function searchForCodeAction()
+    {
+        \Zend\Json\Json::$useBuiltinEncoderDecoder = true;
+        $code  = $this->params()->fromRoute("id");
+        $model = $this->getServiceLocator()->get("Wedding\Service\Rsvp")->fetchAll(array('code' => $code));
+        if(!isset($model[0])){
+            $model = json_encode(array('model' => 'CODE NOT FOUND'), true);
+        }else{
+            $model = json_encode($model[0]->toArray());
+        }
+        $view = new \Zend\View\Model\JsonModel();
+        $view->setVariables(array('model' => $model));
         return $view;
     }
 }

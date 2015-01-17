@@ -9,9 +9,17 @@
                 <input type="text" name="name" id="name" required value="<?php print $this->model->getName(); ?>" />
             </div>
         </div>
-        <div class="row" style="margin-top:5px;">
+        <div class="row" style="margin-top:10px;">
             <div class="col-sm-6 col-md-6">
-                <span style="color:red;">*</span> <label for="code">Code</label>
+                <label for="guestName">Guest Name</label> 
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <input type="text" name="guestName" id="guestName" value="<?php print $this->model->getPlusOneName(); ?>" />
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px;">
+            <div class="col-sm-6 col-md-6">
+                <span style="color:red;">*</span> <label for="code">Code (Numeric only)</label>
             </div>
             <div class="col-sm-6 col-md-6">
                 <input type="text" name="code" id="code" required value="<?php print $this->model->getCode(); ?>" />

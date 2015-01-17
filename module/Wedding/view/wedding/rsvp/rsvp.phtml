@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" href="/js/qaptcha/jquery/QapTcha.jquery.css" media="screen" />
 <script type="text/javascript" src="/js/qaptcha/jquery/QapTcha.jquery.js"></script>
+<script src="/js/wedding/RsvpController.js"></script>
 
 <div class="col-sm-12 col-md-12" style="text-align:center;">
     <p style="width:100%;text-align:center;"><img src="/weddingpics/background.png" /></p>
@@ -10,36 +11,52 @@
         <input type="hidden" name="submitted" value="1" />
         <div class="row">
             <div class="col-sm-6 col-md-6">
-                <span style="color:red;">*</span> <label for="code">Please enter your code</label> 
+                <span style="color:red;">*</span> <label for="code">Please enter your code and hit 'Search'</label> 
             </div>
             <div class="col-sm-6 col-md-6">
-                <input type="text" required name="code" id="code" />
+                <input type="text" required name="code" id="code" />&nbsp;
+                <input id="searchButton" class="btn" style="background-color:#738965;border-bottom:2px solid #738965;color:#FFF;" type="button" value="Search" />
             </div>
+            <script type="text/javascript">
+            $("#searchButton").click(function(){
+                RsvpController.search();
+            });
+            </script>
         </div>
-        <div class="row" style="margin-top:5px;">
-            <div class="col-sm-6 col-md-6">
-                <span style="color:red;">*</span> <label for="rsvpType">I will be...</label>
+        <div id="rsvpContainer" style="display:none;">
+            <hr />
+            <div class="row" style="margin-top:5px;">
+                <div class="col-sm-6 col-md-6">
+                    <strong>Name</strong>
+                </div>
+                <div id="name" style="font-weight:bold;" class="col-sm-6 col-md-6">
+                </div>
             </div>
-            <div class="col-sm-6 col-md-6">
-                <input type="radio" name="rsvpType" value="Coming +1" CHECKED /> Coming +1 <input type="text" name="plusOne" id="plusOne" /><br />
-                <input type="radio" onclick="$('#plusOne').val('');" name="rsvpType" value="Coming" /> Coming<br />
-                <input type="radio" onclick="$('#plusOne').val('');" name="rsvpType" value="Not coming" /> Can't make it, sorry
+            <div class="row" style="margin-top:5px;">
+                <div class="col-sm-6 col-md-6">
+                    <span style="color:red;">*</span> <label for="rsvpType">I will be...</label>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <input type="radio" name="rsvpType" value="Coming +1" CHECKED /> Coming w/Guest <input type="text" name="plusOne" id="plusOne" /><br />
+                    <input type="radio" onclick="$('#plusOne').val('');" name="rsvpType" value="Coming" /> Coming (No Guest)<br />
+                    <input type="radio" onclick="$('#plusOne').val('');" name="rsvpType" value="Not coming" /> Can't make it, sorry
+                </div>
             </div>
-        </div>
-        <div class="row" style="margin-top:25px;">
-            <div class="col-sm-6 col-md-6">
-                &nbsp;
+            <div class="row" style="margin-top:25px;">
+                <div class="col-sm-6 col-md-6">
+                    &nbsp;
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="QapTcha" style="margin-top:-5px;"></div>
+                </div>
             </div>
-            <div class="col-sm-6 col-md-6">
-                <div class="QapTcha" style="margin-top:-5px;"></div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 col-md-6">
-                &nbsp;
-            </div>
-            <div class="col-sm-6 col-md-6">
-                <input class="btn btn-lg btn-orange" style="background-color:#738965;border-bottom:2px solid #738965" type="submit" value="Submit" />
+            <div class="row">
+                <div class="col-sm-6 col-md-6">
+                    &nbsp;
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <input class="btn btn-lg btn-orange" style="background-color:#738965;border-bottom:2px solid #738965" type="submit" value="Submit" />
+                </div>
             </div>
         </div>
     </fieldset>
