@@ -48,7 +48,7 @@ return array(
                      ),
                  ),
              ),
-            'chess' => array(
+            'chessgames' => array(
                  'type'    => 'segment',
                  'options' => array(
                      'route'    => '/chessgames[/:action][/:id]',

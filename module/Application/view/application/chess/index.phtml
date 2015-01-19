@@ -13,6 +13,12 @@
     </p>
 </div>
 <?php
+
+$hasIdentity = $this->identityHelper();
+if($hasIdentity){
+    print '<div class="row" style="margin-top:15px;"><a href="/chessgames/add">Add a chess game</a></div>';
+}
+
 echo $this->partial('zfc-datagrid/renderer/bootstrapTable/layout', 
                     $this->viewModel()->getCurrent()->getVariables()); 
 ?>

@@ -10,8 +10,8 @@ return array(
         'resume/index',
         'blog-post/index',
         'blog-post/show',
-        'chess/index',
-        'chess/show',
+        'chessgames/index',
+        'chessgames/show',
         'contact/index',
         'contact/captcha',
         'wedding/index',
@@ -38,6 +38,9 @@ return array(
         'rsvp/delete',
         'blog-post/add',
         'blog-post/edit',
-        'blog-post/delete'
+        'blog-post/delete',
+        'chessgames/add',
+        'chessgames/edit',
+        'chessgames/delete'
     ),
 );

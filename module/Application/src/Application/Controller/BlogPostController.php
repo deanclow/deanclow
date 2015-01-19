@@ -74,7 +74,7 @@ class BlogPostController extends CommonController
                     ->setTitleImage($this->params()->fromPost('titleimage'));
             $model  = $this->getServiceLocator()->get("Application\Service\BlogPost")->insert($model);
             //redirect the user here
-            return $this->redirect()->toRoute('blog-post/index');
+            return $this->redirect()->toRoute('blog-post');
         }
         $view = $this->acceptableViewModelSelector($this->acceptCriteria);
         $view->setVariables(array(
@@ -101,7 +101,7 @@ class BlogPostController extends CommonController
                     ->setTitleImage($this->params()->fromPost('titleimage'));
             $model  = $this->getServiceLocator()->get("Application\Service\BlogPost")->update($model);
             //redirect the user here
-            return $this->redirect()->toRoute('blog-post/index');
+            return $this->redirect()->toRoute('blog-post');
         }
         $view = $this->acceptableViewModelSelector($this->acceptCriteria);
         $view->setVariables(array(

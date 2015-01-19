@@ -1,0 +1,8 @@
+<a href="/chessgames">Back</a>
+<h1>Add a Chess Game</h1>
+
+<?php 
+
+echo $this->partial('application/chess/form.phtml', 
+                    array('model' => $this->model,
+                          'mode'  => 'add')); 

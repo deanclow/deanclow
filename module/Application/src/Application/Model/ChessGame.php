@@ -221,7 +221,11 @@ class ChessGame extends CommonModel
      */
     public function getDate()
     {
-        return $this->date;
+        if($this->date=='Unknown'){
+            return date('m/d/Y');
+        }
+        $date = new \DateTime($this->date);
+        return $date->format('m/d/Y');
     }
     
     /**

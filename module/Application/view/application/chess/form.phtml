@@ -1,1 +1,116 @@
-hi2u
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<form method="post" enctype="multipart/form-data">
+    <fieldset>
+        <input type="hidden" name="submitted" value="1" />
+        <div class="col-sm-12 col-md-12">
+            <div class="col-sm-6 col-md-6">
+                <span style="color:red;">*</span> <label for="whitePlayer">White Player</label>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <input type="text" name="whitePlayer" id="whitePlayer" required value="<?php print $this->model->getWhitePlayer(); ?>" />
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12" style="margin-top:10px;">
+            <div class="col-sm-6 col-md-6">
+                <span style="color:red;">*</span> <label for="whiteRating">White Rating</label>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <input type="text" name="whiteRating" id="whiteRating" required value="<?php print $this->model->getWhiteRating(); ?>" />
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12" style="margin-top:10px;">
+            <div class="col-sm-6 col-md-6">
+                <span style="color:red;">*</span> <label for="blackPlayer">Black Player</label>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <input type="text" name="blackPlayer" id="blackPlayer" required value="<?php print $this->model->getBlackPlayer(); ?>" />
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12" style="margin-top:10px;">
+            <div class="col-sm-6 col-md-6">
+                <span style="color:red;">*</span> <label for="blackRating">Black Rating</label>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <input type="text" name="whiteRating" id="whiteRating" required value="<?php print $this->model->getBlackRating(); ?>" />
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12" style="margin-top:10px;">
+            <div class="col-sm-6 col-md-6">
+                <span style="color:red;">*</span> <label for="roundNumber">Round Number</label>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <select name="roundNumber" id="roundNumber">
+                    <?php
+                    for($i=1;$i<=8;$i++){
+                        $checked = "";
+                        if($this->model->getRoundNumber()==$i){
+                            $checked = "CHECKED";
+                        }
+                        print '<option value="'.$i.'" '.$checked.'>'.$i.'</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12" style="margin-top:10px;">
+            <div class="col-sm-6 col-md-6">
+                <span style="color:red;">*</span> <label for="date">Game Date</label>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <input type="text" name="date" id="date" required readonly value="<?php print $this->model->getDate(); ?>" />
+                <script>
+                $(function() {
+                  $( "#date" ).datepicker();
+                });
+                </script>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12" style="margin-top:10px;">
+            <div class="col-sm-6 col-md-6">
+                <span style="color:red;">*</span> <label for="site">Location</label>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <input type="text" name="site" id="site" required value="<?php print $this->model->getSite(); ?>" />
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12" style="margin-top:10px;">
+            <div class="col-sm-6 col-md-6">
+                <span style="color:red;">*</span> <label for="result">Result</label>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <select name="roundNumber" id="roundNumber">
+                    <option value="1-0">1-0</option>
+                    <option value="0-1">0-1</option>
+                    <option value="1/2-1/2">1/2-1/2</option>
+                </select>
+            </div>
+        </div>
+        
+        <?php
+        if($this->mode=='add'){
+        ?>
+        <div class="col-sm-12 col-md-12" style="margin-top:10px;">
+            <div class="col-sm-6 col-md-6">
+                <span style="color:red;">*</span> <label for="pgn">PGN File</label>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <input type="file" name="pgn" required id="pgn" value="<?php print $this->model->getPgnString(); ?>" />
+            </div>
+        </div>
+        <?php
+        }
+        ?>
+        <div class="col-sm-12 col-md-12">
+            <input type="submit" class="col-md-offset-4 btn btn-lg btn-orange" value="Submit" />
+        </div>
+    </fieldset>
+</form>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    setTimeout(function(){
+       $(".nav li").attr("class", "");  
+       $("#chessNav").attr("class", "active"); 
+    }, 0);
+});
+</script>
