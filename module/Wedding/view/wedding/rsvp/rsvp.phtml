@@ -2,10 +2,10 @@
 <script type="text/javascript" src="/js/qaptcha/jquery/QapTcha.jquery.js"></script>
 <script src="/js/wedding/RsvpController.js"></script>
 
-<div class="col-sm-12 col-md-12" style="text-align:center;">
+<div class="col-sm-12 col-md-12" style="text-align:center;clear:both;">
     <p style="width:100%;text-align:center;"><img src="/weddingpics/background.png" /></p>
 </div>
-
+<div style="clear:both;"></div>
 <form method="post" enctype="multipart/form-data">
     <fieldset>
         <input type="hidden" name="submitted" value="1" />
@@ -26,37 +26,26 @@
         <div id="rsvpContainer" style="display:none;">
             <hr />
             <div class="row" style="margin-top:5px;">
-                <div class="col-sm-6 col-md-6">
-                    <strong>Name</strong>
+                <div class="col-sm-5 col-md-5 col-md-offset-1" style="background-color:#F0F0F0;padding:10px;border:1px solid #000;margin-right:10px;">
+                    <div id="name" style="font-weight:bold;" class="col-sm-12 col-md-12"></div>
+                    <div class="col-sm-12 col-md-12">
+                        <input type="radio" onclick="$('#plusOne').val('');" name="rsvpType" value="Coming" /> Will be attending<br />
+                        <input type="radio" onclick="$('#plusOne').val('');" name="rsvpType" value="Not coming" /> Will not be attending
+                    </div>
                 </div>
-                <div id="name" style="font-weight:bold;" class="col-sm-6 col-md-6">
-                </div>
-            </div>
-            <div class="row" style="margin-top:5px;">
-                <div class="col-sm-6 col-md-6">
-                    <span style="color:red;">*</span> <label for="rsvpType">I will be...</label>
-                </div>
-                <div class="col-sm-6 col-md-6">
-                    <input type="radio" name="rsvpType" value="Coming +1" CHECKED /> Coming w/Guest <input type="text" name="plusOne" id="plusOne" /><br />
-                    <input type="radio" onclick="$('#plusOne').val('');" name="rsvpType" value="Coming" /> Coming (No Guest)<br />
-                    <input type="radio" onclick="$('#plusOne').val('');" name="rsvpType" value="Not coming" /> Can't make it, sorry
-                </div>
-            </div>
-            <div class="row" style="margin-top:25px;">
-                <div class="col-sm-6 col-md-6">
-                    &nbsp;
-                </div>
-                <div class="col-sm-6 col-md-6">
-                    <div class="QapTcha" style="margin-top:-5px;"></div>
+                <div class="col-sm-5 col-md-5" style="background-color:#F0F0F0;padding:10px;border:1px solid #000;">
+                    <div id="guestName" style="font-weight:bold;" class="col-sm-12 col-md-12"></div>
+                    <div class="col-sm-12 col-md-12">
+                        <input type="radio" onclick="$('#plusOne').val('');" name="rsvpTypePlusOne" value="Coming" /> Will be attending<br />
+                        <input type="radio" onclick="$('#plusOne').val('');" name="rsvpTypePlusOne" value="Not coming" /> Will not be attending
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-6 col-md-6">
-                    &nbsp;
-                </div>
-                <div class="col-sm-6 col-md-6">
-                    <input class="btn btn-lg btn-orange" style="background-color:#738965;border-bottom:2px solid #738965" type="submit" value="Submit" />
-                </div>
+            <div class="row col-sm-12 col-md-12" style="text-align:center;margin-top:45px;">
+                <div class="QapTcha" style="margin-top:-5px;margin-left:auto;margin-right:auto;"></div>
+            </div>
+            <div class="row col-sm-12 col-md-12" style="text-align:center;margin-top:10px;">
+                <input class="btn btn-lg btn-orange" style="background-color:#738965;border-bottom:2px solid #738965" type="submit" value="Submit" />
             </div>
         </div>
     </fieldset>
@@ -92,10 +81,10 @@ $(document).ready(function() {
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h4 class="modal-title" id="myModalLabel">THANK YOU!</h4>
+            <h4 class="modal-title" id="myModalLabel">Thank you!</h4>
             </div>
             <div class="modal-body">
-                <h3>Your RSVP has been recorded! Thank you!</h3>
+                <h3>Your RSVP has been recorded!</h3>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>

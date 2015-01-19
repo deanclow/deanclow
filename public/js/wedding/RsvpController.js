@@ -15,24 +15,29 @@ RsvpController = function() {
             dataType: "json",
         }).done(function(callback) {
             var obj = jQuery.parseJSON(callback.model);
+            console.log(obj);
             if(obj.model=="CODE NOT FOUND"){
                 RsvpController.showError();
             }else{
                 $("#name").html(obj.name);
-                $("#plusOne").val(obj.plusOneName);
+                if(obj.plusOneName==""){
+                    obj.plusOneName = "Guest";
+                }
+                $("#guestName").html(obj.plusOneName);
                 //do the radios
-                if(obj.status=="Unknown"){
-                    if(obj.plusOneName!=""){
-                        $( "input[value='Coming +1']").prop('checked', true);
-                    }else{
-                        $( "input[value='Coming']").prop('checked', true);
-                    }
-                }else if(obj.status=="Coming"){
-                    $( "input[value='Coming']").prop('checked', true);
-                }else if(obj.status=="Not coming"){
-                    $( "input[value='Not coming']").prop('checked', true);
-                }else{
-                    $( "input[value='Coming +1']").prop('checked', true);
+                if(obj.plusOneStatus=="Unknown"){
+                    $( "input[name='rsvpType'][value='Coming']").prop('checked', true);
+                }else if(obj.plusOneStatus=="Coming"){
+                    $( "input[name='rsvpType'][value='Coming']").val("Coming");
+                }else if(obj.plusOneStatus=="Not coming"){
+                    $( "input[name='rsvpType'][value='Not coming']").prop('checked', true);
+                }
+                if(obj.plusOneStatus=="Unknown"){
+                    $( "input[name='rsvpTypePlusOne'][value='Coming']").prop('checked', true);
+                }else if(obj.plusOneStatus=="Coming"){
+                    $( "input[name='rsvpTypePlusOne'][value='Coming']").val("Coming");
+                }else if(obj.plusOneStatus=="Not coming"){
+                    $( "input[name='rsvpTypePlusOne'][value='Not coming']").prop('checked', true);
                 }
                 $("#rsvpContainer").show();
             }

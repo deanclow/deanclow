@@ -2,10 +2,15 @@
     <img class="col-sm-12 col-md-12" src="/weddingpics/belize.png" alt="" title="" />
 </div>
 <div class="col-sm-6 col-md-6">
-    <p>If you are interested in giving Alana and Dean a gift, they have planned an adventurous honeymoon in Belize, complete with scuba-diving, caving, exploring Mayan ruins, and bushwhacking through the rainforest.</p>
-    <p>Any donations to this fund would be greatly appreciated.</p>
+    <p>We have planned an adventurous honeymoon in Belize, complete with scuba-diving, caving, exploring Mayan ruins, and bushwhacking through the rainforest.</p>
+    <p>It would mean so much to us if you would help us have this adventure.</p>
     <hr />
-    <p>NOTE: All payments will go to <a href="mailto:deanrclow@gmail.com">deanrclow@gmail.com</a> via PayPal.</p>
+    <h4 style="font-family:Trebuchet MS;">Offline:</h4>
+    <p>Dean Clow<br />
+    9959 E Peakview Ave. S204<br />
+    Englewood, CO 80111</p>
+    <hr />
+    <h4 style="font-family:Trebuchet MS;">Via Paypal:</h4>
     <form action="https://www.paypal.com/cgi-bin/webscr" target="_blank" method="post">
       <input type="hidden" name="cmd" value="_donations" />
       <input type="hidden" name="business" value="deanrclow@gmail.com" />
@@ -21,7 +26,7 @@
             <input type="hidden" name="submitted" value="1" />
             <div class="row" style="margin-top:10px;">
                 <div class="col-sm-5 col-md-5">
-                    <span style="color:red;">*</span> <label for="cn">Name &amp; Comments</label>
+                    <span style="color:red;">*</span> <label style="font-family:Trebuchet MS;" for="cn">Name &amp; Comments</label>
                 </div>
                 <div class="col-sm-7 col-md-7">
                     <textarea name="cn" id="cn" class="col-sm-12 col-md-12" rows="8" required></textarea>
@@ -29,7 +34,7 @@
             </div>
             <div class="row" style="margin-top:10px;">
                 <div class="col-sm-5 col-md-5">
-                    <span style="color:red;">*</span> <label for="amount">Amount</label>
+                    <span style="color:red;">*</span> <label style="font-family:Trebuchet MS;" for="amount">Amount</label>
                 </div>
                 <div class="col-sm-7 col-md-7">
                     $<input type="text" name="amount" id="amount" style="width:80px;" value="0.00" />
@@ -52,3 +57,11 @@ $(document).ready(function() {
     }, 0);
 });
 </script>
+<style>
+    h4{
+        font-weight:bold;
+    }
+    label{
+        font-weight:normal;
+    }
+</style>

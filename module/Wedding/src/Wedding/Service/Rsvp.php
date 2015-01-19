@@ -30,11 +30,19 @@ class Rsvp extends CommonService
     {
         $finalDatasource = array();
         foreach($rs as $row){
-            if($row['status']=='Coming +1'){
-                $row['status'] = 'Coming +Guest ('.$row['plus_one_name'].')';
-            }
             if($row['plus_one_name']==""){
-                $row['plus_one_name'] = "None";
+                $row['plus_one_name'] = "Guest";
+            }
+            if($row['status']=='Coming'){
+                if($row['plus_one_status']=='Coming'){
+                    $row['status'] = 'Coming +Guest';
+                }else{
+                    $row['status'] = 'Coming (No guest)';
+                }
+            }elseif($row['status']=='Not coming'){
+                $row['status'] = 'Not coming';
+            }else{
+                $row['status'] = 'Not RSVP\'d yet';
             }
             $row['edit']   = '<a href="/rsvp/edit/'.$row['id'].'">Edit</a>';
             $row['delete']   = '<a href="/rsvp/delete/'.$row['id'].'">Delete</a>';

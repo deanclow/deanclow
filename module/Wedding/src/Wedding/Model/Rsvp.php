@@ -36,6 +36,12 @@ class Rsvp extends \Application\Model\CommonModel
     protected $plusOneName = "";
     
     /**
+     * Holds the plus one status
+     * @var string
+     */
+    protected $plusOneStatus = "Unknown";
+    
+    /**
      * Set the name of the rsvp
      * @param  string $name
      * @return \Wedding\Model\Rsvp
@@ -80,6 +86,17 @@ class Rsvp extends \Application\Model\CommonModel
     }
     
     /**
+     * Set the plus one status
+     * @param  string $status
+     * @return \Wedding\Model\Rsvp
+     */
+    public function setPlusOneStatus($status="Unknown")
+    {
+        $this->plusOneStatus = $status;
+        return $this;
+    }
+    
+    /**
      * Get the name
      * @return string
      */
@@ -103,11 +120,20 @@ class Rsvp extends \Application\Model\CommonModel
     
     /**
      * Get the status
-     * @return type
+     * @return string
      */
     public function getStatus()
     {
         return $this->status;
+    }
+    
+    /**
+     * Get the plus one status
+     * @return string
+     */
+    public function getPlusOneStatus()
+    {
+        return $this->plusOneStatus;
     }
     
     /**

@@ -16,11 +16,12 @@ class Rsvp extends CommonEncoder
      * Holds the db fields and their mapping
      * @var string
      */
-    public $fields = array('id'          => 'id',
-                           'name'        => 'name',
-                           'code'        => 'code',
-                           'status'      => 'status',
-                           'plusOneName' => 'plus_one_name');
+    public $fields = array('id'            => 'id',
+                           'name'          => 'name',
+                           'code'          => 'code',
+                           'status'        => 'status',
+                           'plusOneName'   => 'plus_one_name',
+                           'plusOneStatus' => 'plus_one_status');
 
     /**
      * Constructor
