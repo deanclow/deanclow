@@ -31,7 +31,7 @@
                 <span style="color:red;">*</span> <label for="blackRating">Black Rating</label>
             </div>
             <div class="col-sm-6 col-md-6">
-                <input type="text" name="whiteRating" id="whiteRating" required value="<?php print $this->model->getBlackRating(); ?>" />
+                <input type="text" name="blackRating" id="blackRating" required value="<?php print $this->model->getBlackRating(); ?>" />
             </div>
         </div>
         <div class="col-sm-12 col-md-12" style="margin-top:10px;">
@@ -44,7 +44,7 @@
                     for($i=1;$i<=8;$i++){
                         $checked = "";
                         if($this->model->getRoundNumber()==$i){
-                            $checked = "CHECKED";
+                            $checked = "SELECTED";
                         }
                         print '<option value="'.$i.'" '.$checked.'>'.$i.'</option>';
                     }
@@ -78,10 +78,19 @@
                 <span style="color:red;">*</span> <label for="result">Result</label>
             </div>
             <div class="col-sm-6 col-md-6">
-                <select name="roundNumber" id="roundNumber">
-                    <option value="1-0">1-0</option>
-                    <option value="0-1">0-1</option>
-                    <option value="1/2-1/2">1/2-1/2</option>
+                <select name="result" id="result">
+                    <?php
+                    $arr = array('1-0',
+                                 '0-1',
+                                 '1/2-1/2');
+                    foreach($arr as $row){
+                        $checked = "";
+                        if($row==$this->model->getResult()){
+                            $checked = "SELECTED";
+                        }
+                        print '<option value="'.$row.'" '.$checked.'>'.$row.'</option>';
+                    }
+                    ?>
                 </select>
             </div>
         </div>

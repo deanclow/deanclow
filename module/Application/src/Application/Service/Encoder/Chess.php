@@ -16,7 +16,7 @@ class Chess extends CommonEncoder
      * Holds the db fields and their mapping
      * @var string
      */
-    public $fields = array('id'         => 'id',
+    public $fields = array('id'             => 'id',
                            'whitePlayer'    => 'white_player',
                            'blackPlayer'    => 'black_player',
                            'whiteRating'    => 'white_rating',

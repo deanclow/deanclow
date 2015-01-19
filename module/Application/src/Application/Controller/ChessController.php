@@ -96,6 +96,7 @@ class ChessController extends CommonController
                     ->setRoundNumber($this->params()->fromPost('roundNumber'))
                     ->setDate($date)
                     ->setSite($this->params()->fromPost('site'))
+                    ->setResult($this->params()->fromPost('result'))
                     ->setPgnString($target);
             $model  = $this->getServiceLocator()->get("Application\Service\Chess")->insert($model);
             //redirect the user here
@@ -127,6 +128,7 @@ class ChessController extends CommonController
                     ->setRoundNumber($this->params()->fromPost('roundNumber'))
                     ->setDate($date)
                     ->setSite($this->params()->fromPost('site'))
+                    ->setResult($this->params()->fromPost('result'))
                     ->setPgnString($model->getPgnString());
             $model  = $this->getServiceLocator()->get("Application\Service\Chess")->update($model);
             //redirect the user here
